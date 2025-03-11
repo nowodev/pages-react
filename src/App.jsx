@@ -7,9 +7,9 @@ export default function App() {
       <div className="min-h-full">
         <Header />
 
-        <main className="-mt-32">
-          <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div className="rounded-lg bg-white px-5 py-6 shadow-sm sm:px-6">
+        <main className="-mt-20">
+          <div className="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="px-5 py-6 bg-white rounded-lg shadow-sm sm:px-6">
               <Outlet />
             </div>
           </div>
