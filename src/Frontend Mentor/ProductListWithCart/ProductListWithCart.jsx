@@ -1,13 +1,68 @@
 import emptyCart from "./assets/images/illustration-empty-cart.svg";
 import addToCart from "./assets/images/icon-add-to-cart.svg";
 import data from "./data.json";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { classNames } from "../../functions";
+import {
+  MinusCircleIcon,
+  PlusCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/outline";
 
 export default function ProjectListWithCart() {
-  const [cart, setCart] = useState([]);
+  const [products] = useState(data);
+  const [cartItems, setCartItems] = useState([]);
+  const [activeProducts, setActiveProducts] = useState([]);
+  const totalItemCount = cartItems.reduce(
+    (acc, item) => item.quantity + Number(acc),
+    []
+  );
+  const orderTotal = cartItems.reduce(
+    (acc, item) => item.total + Number(acc),
+    []
+  );
 
-  function handleAddToCart(data) {
-    setCart((cart) => [...cart, data]);
+  function handleAddToCart(product) {
+    if (cartItems.find((c) => c.id === product.id)) return;
+
+    const values = { ...product, quantity: 1, total: 1 * product.price };
+    setCartItems((cart) => [...cart, values]);
+    setActiveProducts((activeProduct) => [...activeProduct, values]);
+  }
+
+  function handleIncrement(id) {
+    const newCart = cartItems.map((c) => {
+      if (c.id !== id) return c;
+
+      const updatedQuantity = c.quantity + 1;
+      const updatedTotal = c.price * updatedQuantity;
+
+      return { ...c, quantity: updatedQuantity, total: updatedTotal };
+    });
+    setCartItems(newCart);
+    setActiveProducts(newCart);
+  }
+
+  function handleDecrement(id) {
+    const newCart = cartItems
+      .map((c) => {
+        if (c.id !== id) return c;
+
+        const updatedQuantity = c.quantity - 1;
+        const updatedTotal = c.price * updatedQuantity;
+
+        return { ...c, quantity: updatedQuantity, total: updatedTotal };
+      })
+      .filter((item) => item.quantity > 0);
+
+    setCartItems(newCart);
+    setActiveProducts(newCart);
+  }
+
+  function handleDelete(id) {
+    const newCart = cartItems.filter((c) => c.id !== id);
+    setCartItems(newCart);
+    setActiveProducts(newCart);
   }
 
   return (
@@ -17,11 +72,14 @@ export default function ProjectListWithCart() {
           <h1 className="mb-10 text-3xl font-bold">Desserts</h1>
 
           <div className="grid grid-cols-3 gap-10">
-            {data.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
+                activeProducts={activeProducts}
                 onAdd={handleAddToCart}
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
               />
             ))}
           </div>
@@ -29,16 +87,39 @@ export default function ProjectListWithCart() {
 
         <div>
           <div className="py-5 bg-white px-7 rounded-2xl">
-            <h2 className="text-xl font-bold text-rose-600">Your Cart (0)</h2>
+            <h2 className="text-xl font-bold text-rose-600">
+              Your Cart ({totalItemCount})
+            </h2>
 
             <div className="flex flex-col items-center my-10">
-              {cart.length === 0 && (
+              {cartItems.length === 0 && (
                 <>
                   <img src={emptyCart} alt="" />
                   <p className="mt-3 text-base font-medium text-center text-rose-700">
                     Your added items will appear here
                   </p>
                 </>
+              )}
+
+              {cartItems.length > 0 && (
+                <div className="w-full space-y-5">
+                  {cartItems.map((cartItem) => (
+                    <CartItem
+                      key={cartItem.id}
+                      cartItem={cartItem}
+                      onDelete={handleDelete}
+                    />
+                  ))}
+
+                  <p className="inline-flex items-center justify-between w-full mt-4 text-base">
+                    Order Total{" "}
+                    <span className="text-2xl font-bold">${orderTotal}</span>
+                  </p>
+
+                  <button className="w-full px-3 py-2 mt-3 text-base font-semibold text-white border cursor-pointer bg-rose-600 rounded-3xl">
+                    Confirm Order
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -48,22 +129,85 @@ export default function ProjectListWithCart() {
   );
 }
 
-function ProductCard({ product, onAdd }) {
+function ProductCard({
+  product,
+  activeProducts,
+  onAdd,
+  onIncrement,
+  onDecrement,
+}) {
+  let active = useRef(false);
+
+  active = activeProducts.filter((c) => c.id === product.id).at(0)?.id
+    ? true
+    : false;
+
   return (
     <div>
       <div className="mb-4 text-center">
-        <img src={product.image.desktop} className="rounded-2xl" alt="" />
-        <button
-          onClick={() => onAdd(product)}
-          className="inline-flex items-center px-10 py-2 -mt-40 text-base font-semibold bg-white border border-rose-500 rounded-3xl h-fit gap-x-3"
-        >
-          <img src={addToCart} alt="" />
-          Add to Cart
-        </button>
+        <img
+          src={product.image.desktop}
+          className={classNames(
+            active ? "border-3 border-rose-500" : "",
+            "rounded-2xl"
+          )}
+          alt={product.name}
+        />
+
+        {!active && (
+          <button
+            onClick={() => onAdd(product)}
+            className="inline-flex items-center px-8 py-2 -mt-40 text-base font-semibold bg-white border cursor-pointer border-rose-500 rounded-3xl h-fit gap-x-3"
+          >
+            <img src={addToCart} alt="Add" />
+            Add to Cart
+          </button>
+        )}
+
+        {active && (
+          <div
+            onClick={() => onAdd(product)}
+            className="inline-flex items-center justify-between px-3 py-2 -mt-40 text-base font-semibold text-white border w-44 bg-rose-600 rounded-3xl h-fit gap-x-3"
+          >
+            <MinusCircleIcon
+              onClick={() => onDecrement(product.id)}
+              className="cursor-pointer size-5"
+            />
+            <span>
+              {activeProducts.filter((a) => a.id === product.id).at(0).quantity}
+            </span>
+            <PlusCircleIcon
+              onClick={() => onIncrement(product.id)}
+              className="cursor-pointer size-5"
+            />
+          </div>
+        )}
       </div>
       <h2 className="text-sm text-rose-700">{product.category}</h2>
       <h3 className="text-lg font-semibold">{product.name}</h3>
       <p className="text-base font-semibold text-rose-600">${product.price}</p>
+    </div>
+  );
+}
+
+function CartItem({ cartItem, onDelete }) {
+  return (
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-lg font-semibold">{cartItem.name}</p>
+        <p className="inline-flex space-x-3 font-extralight text-rose-700">
+          <span className="font-semibold text-rose-600">
+            {cartItem.quantity}x
+          </span>
+          <span>@{cartItem.price}</span>
+          <span>${cartItem.total}</span>
+        </p>
+      </div>
+
+      <XCircleIcon
+        onClick={() => onDelete(cartItem.id)}
+        className="cursor-pointer size-7 text-rose-600"
+      />
     </div>
   );
 }
