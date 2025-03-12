@@ -11,7 +11,7 @@ import LayoutGrid from "./components/LayoutGrid";
 const actions = [
   {
     title: "Birthdays",
-    href: "react-projects/birthdays",
+    href: "birthdays",
     icon: ClockIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
