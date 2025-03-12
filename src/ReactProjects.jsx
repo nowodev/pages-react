@@ -10,8 +10,8 @@ import LayoutGrid from "./components/LayoutGrid";
 
 const actions = [
   {
-    title: "Request time off",
-    href: "#",
+    title: "Birthdays",
+    href: "react-projects/birthdays",
     icon: ClockIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",

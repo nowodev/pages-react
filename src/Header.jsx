@@ -28,11 +28,7 @@ export default function Header() {
               <div className="flex items-center">
                 <div className="shrink-0">
                   <Link to="/">
-                    <img
-                      alt="Nowodev"
-                      src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                      className="size-8"
-                    />
+                    <img alt="Nowodev" src="pages.png" className="size-8" />
                   </Link>
                 </div>
                 <div className="hidden md:block">
