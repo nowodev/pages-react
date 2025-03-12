@@ -1,5 +1,6 @@
 import emptyCart from "./assets/images/illustration-empty-cart.svg";
 import addToCart from "./assets/images/icon-add-to-cart.svg";
+import carbonNeutral from "./assets/images/icon-carbon-neutral.svg";
 import data from "./data.json";
 import { useRef, useState } from "react";
 import { classNames } from "../../functions";
@@ -15,8 +16,9 @@ export default function ProjectListWithCart() {
   const [activeProducts, setActiveProducts] = useState([]);
   const totalItemCount = cartItems.reduce(
     (acc, item) => item.quantity + Number(acc),
-    []
+    0
   );
+
   const orderTotal = cartItems.reduce(
     (acc, item) => item.total + Number(acc),
     []
@@ -91,18 +93,18 @@ export default function ProjectListWithCart() {
               Your Cart ({totalItemCount})
             </h2>
 
-            <div className="flex flex-col items-center my-10">
+            <div>
               {cartItems.length === 0 && (
-                <>
+                <div className="flex flex-col items-center mt-10">
                   <img src={emptyCart} alt="" />
                   <p className="mt-3 text-base font-medium text-center text-rose-700">
                     Your added items will appear here
                   </p>
-                </>
+                </div>
               )}
 
               {cartItems.length > 0 && (
-                <div className="w-full space-y-5">
+                <div className="w-full mt-3">
                   {cartItems.map((cartItem) => (
                     <CartItem
                       key={cartItem.id}
@@ -111,12 +113,22 @@ export default function ProjectListWithCart() {
                     />
                   ))}
 
-                  <p className="inline-flex items-center justify-between w-full mt-4 text-base">
+                  <p className="inline-flex items-center justify-between w-full mt-4 text-sm">
                     Order Total{" "}
-                    <span className="text-2xl font-bold">${orderTotal}</span>
+                    <span className="text-2xl font-bold">
+                      ${Number(orderTotal).toFixed(2)}
+                    </span>
                   </p>
 
-                  <button className="w-full px-3 py-2 mt-3 text-base font-semibold text-white border cursor-pointer bg-rose-600 rounded-3xl">
+                  <div className="flex p-3 mt-4 space-x-2 rounded-lg bg-rose-100">
+                    <img src={carbonNeutral} alt="Carbon Neutral" />
+                    <p>
+                      This is a{" "}
+                      <span className="font-bold">carbon-neutral</span> delivery
+                    </p>
+                  </div>
+
+                  <button className="w-full p-3 mt-3 text-base font-semibold text-white border cursor-pointer bg-rose-600 rounded-3xl">
                     Confirm Order
                   </button>
                 </div>
@@ -157,7 +169,7 @@ function ProductCard({
         {!active && (
           <button
             onClick={() => onAdd(product)}
-            className="inline-flex items-center px-8 py-2 -mt-40 text-base font-semibold bg-white border cursor-pointer border-rose-500 rounded-3xl h-fit gap-x-3"
+            className="inline-flex items-center px-8 py-3 -mt-40 text-base font-semibold bg-white border cursor-pointer border-rose-500 rounded-3xl h-fit gap-x-3 hover:text-rose-500"
           >
             <img src={addToCart} alt="Add" />
             Add to Cart
@@ -167,7 +179,7 @@ function ProductCard({
         {active && (
           <div
             onClick={() => onAdd(product)}
-            className="inline-flex items-center justify-between px-3 py-2 -mt-40 text-base font-semibold text-white border w-44 bg-rose-600 rounded-3xl h-fit gap-x-3"
+            className="inline-flex items-center justify-between p-3 -mt-40 text-base font-semibold text-white border w-44 bg-rose-600 rounded-3xl h-fit gap-x-3"
           >
             <MinusCircleIcon
               onClick={() => onDecrement(product.id)}
@@ -185,28 +197,30 @@ function ProductCard({
       </div>
       <h2 className="text-sm text-rose-700">{product.category}</h2>
       <h3 className="text-lg font-semibold">{product.name}</h3>
-      <p className="text-base font-semibold text-rose-600">${product.price}</p>
+      <p className="text-base font-semibold text-rose-600">
+        ${Number(product.price).toFixed(2)}
+      </p>
     </div>
   );
 }
 
 function CartItem({ cartItem, onDelete }) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between py-2.5 border-b border-gray-200">
       <div>
         <p className="text-lg font-semibold">{cartItem.name}</p>
         <p className="inline-flex space-x-3 font-extralight text-rose-700">
           <span className="font-semibold text-rose-600">
             {cartItem.quantity}x
           </span>
-          <span>@{cartItem.price}</span>
-          <span>${cartItem.total}</span>
+          <span>@{Number(cartItem.price).toFixed(2)}</span>
+          <span>${Number(cartItem.total).toFixed(2)}</span>
         </p>
       </div>
 
       <XCircleIcon
         onClick={() => onDelete(cartItem.id)}
-        className="cursor-pointer size-7 text-rose-600"
+        className="cursor-pointer size-7 text-rose-300 hover:text-rose-600"
       />
     </div>
   );
