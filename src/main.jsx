@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import ReactProjects from "./ReactProjects.jsx";
 import Home from "./Home.jsx";
 import Birthdays from "./ReactProjects/Birthdays.jsx";
-import ProjectListWithCart from "./Frontend Mentor/ProductListWithCart.jsx";
+import ProjectListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
 
 createRoot(document.getElementById("root")).render(
