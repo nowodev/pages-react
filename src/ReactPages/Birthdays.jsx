@@ -69,9 +69,9 @@ export default function Birthdays() {
   const footerCaption = useOutletContext();
 
   return (
-    <div className="w-full py-10 bg-pink-200">
-      <div className="max-w-xl mx-auto bg-white rounded-lg shadow py3">
-        <h1 className="px-6 py-3 text-3xl font-semibold shadow">
+    <div className="w-full py-10">
+      <div className="max-w-xl mx-auto bg-white border border-pink-500 rounded-lg shadow py3">
+        <h1 className="px-6 py-3 text-3xl font-semibold shadow text-center">
           {birthdays.length > 0 ? birthdays.length : 0} Birthdays Today
         </h1>
 
