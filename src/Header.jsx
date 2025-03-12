@@ -7,11 +7,11 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router";
 
 const navigation = [
-  { name: "Frontend Mentor", href: "#" },
+  { name: "Frontend Mentor", href: "frontend-mentor" },
   { name: "React Projects", href: "react-projects" },
-  { name: "Projects", href: "#" },
-  { name: "Calendar", href: "#" },
-  { name: "Reports", href: "#" },
+  // { name: "Projects", href: "#" },
+  // { name: "Calendar", href: "#" },
+  // { name: "Reports", href: "#" },
 ];
 
 function classNames(...classes) {

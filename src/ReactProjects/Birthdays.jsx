@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 
 const birthdayList = [
   {
@@ -32,36 +32,36 @@ const birthdayList = [
     age: 40,
     src: "https://i.pravatar.cc/75?u=100005",
   },
-  {
-    id: 100006,
-    name: "Zara Baldwin",
-    age: 29,
-    src: "https://i.pravatar.cc/75?u=100006",
-  },
-  {
-    id: 100007,
-    name: "Finn Hamilton",
-    age: 33,
-    src: "https://i.pravatar.cc/75?u=100007",
-  },
-  {
-    id: 100008,
-    name: "Chloe Barrett",
-    age: 26,
-    src: "https://i.pravatar.cc/75?u=100008",
-  },
-  {
-    id: 100009,
-    name: "Owen Maxwell",
-    age: 38,
-    src: "https://i.pravatar.cc/75?u=100009",
-  },
-  {
-    id: 100010,
-    name: "Sadie Sutton",
-    age: 31,
-    src: "https://i.pravatar.cc/75?u=100010",
-  },
+  // {
+  //   id: 100006,
+  //   name: "Zara Baldwin",
+  //   age: 29,
+  //   src: "https://i.pravatar.cc/75?u=100006",
+  // },
+  // {
+  //   id: 100007,
+  //   name: "Finn Hamilton",
+  //   age: 33,
+  //   src: "https://i.pravatar.cc/75?u=100007",
+  // },
+  // {
+  //   id: 100008,
+  //   name: "Chloe Barrett",
+  //   age: 26,
+  //   src: "https://i.pravatar.cc/75?u=100008",
+  // },
+  // {
+  //   id: 100009,
+  //   name: "Owen Maxwell",
+  //   age: 38,
+  //   src: "https://i.pravatar.cc/75?u=100009",
+  // },
+  // {
+  //   id: 100010,
+  //   name: "Sadie Sutton",
+  //   age: 31,
+  //   src: "https://i.pravatar.cc/75?u=100010",
+  // },
 ];
 
 export default function Birthdays() {
