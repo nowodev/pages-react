@@ -71,7 +71,7 @@ export default function Birthdays() {
   return (
     <div className="w-full py-10">
       <div className="max-w-xl mx-auto bg-white border border-pink-500 rounded-lg shadow py3">
-        <h1 className="px-6 py-3 text-3xl font-semibold shadow text-center">
+        <h1 className="px-6 py-3 text-xl md:text-3xl font-semibold shadow text-center">
           {birthdays.length > 0 ? birthdays.length : 0} Birthdays Today
         </h1>
 
@@ -85,7 +85,7 @@ export default function Birthdays() {
           <button
             onClick={() => setBirthdays([])}
             type="button"
-            className="w-full px-3 py-2 text-sm font-semibold text-white bg-pink-600 rounded-md shadow-xs cursor-pointer hover:bg-pink-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
+            className="w-full px-3 py-2 text-sm md:text-base font-semibold text-white bg-pink-600 rounded-md shadow-xs cursor-pointer hover:bg-pink-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
           >
             {footerCaption("https://react-vite-projects-1-birthday-buddy.netlify.app")}
             Clear All
@@ -100,13 +100,13 @@ function Birthday({ person }) {
   return (
     <div className="flex items-center space-x-3">
       <img
-        className="rounded-full"
+        className="rounded-full w-12 md:w-auto"
         src={`https://i.pravatar.cc/75?u=${person.id}`}
         alt={person.name}
       />
       <div>
-        <p className="text-2xl font-semibold">{person.name}</p>
-        <p className="-mt-1 text-gray-500">{person.age} years</p>
+        <p className="text-lg md:text-2xl font-semibold">{person.name}</p>
+        <p className="-mt-1 text-sm md:text-base text-gray-500">{person.age} years</p>
       </div>
     </div>
   );
