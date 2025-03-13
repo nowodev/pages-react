@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header className="pb-32 bg-gray-800">
       <Disclosure as="nav" className="bg-gray-800">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] sm:px-6 lg:px-8">
           <div className="border-b border-gray-700">
             <div className="flex items-center justify-between h-16 px-4 sm:px-0">
               <div className="flex items-center">

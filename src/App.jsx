@@ -12,7 +12,7 @@ export default function App() {
         <Header />
 
         <main className="-mt-20">
-          <div className="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="px-4 pb-12 mx-auto max-w-[1440px] sm:px-6 lg:px-8">
             <div className="px-5 py-6 bg-white rounded-lg shadow-sm sm:px-6">
               <Outlet context={setFooterCaption} />
             </div>

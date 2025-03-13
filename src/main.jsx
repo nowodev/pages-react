@@ -8,6 +8,7 @@ import Home from "./Home.jsx";
 import Birthdays from "./ReactProjects/Birthdays.jsx";
 import ProductListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
+import CardinalTalent from "./ReactProjects/CardinalTalent.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="react-projects">
             <Route index element={<ReactProjects />} />
             <Route path="birthdays" element={<Birthdays />} />
+            <Route path="cardinaltalent" element={<CardinalTalent />} />
           </Route>
         </Route>
       </Routes>

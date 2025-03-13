@@ -16,17 +16,16 @@ const actions = [
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
     description:
-      "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.",
+      "A list of birthday data with a button to empty the list",
   },
-  // {
-  //   title: "Benefits",
-  //   href: "#",
-  //   icon: CheckBadgeIcon,
-  //   iconForeground: "text-purple-700",
-  //   iconBackground: "bg-purple-50",
-  //   description:
-  //     "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.",
-  // },
+  {
+    title: "Cardinal Talent",
+    href: "cardinaltalent",
+    icon: UsersIcon,
+    iconForeground: "text-purple-700",
+    iconBackground: "bg-purple-50",
+    description: "A revamp of the Cardinal Talent website.",
+  },
   // {
   //   title: "Schedule a one-on-one",
   //   href: "#",
