@@ -2,15 +2,17 @@ import emptyCart from "./assets/images/illustration-empty-cart.svg";
 import addToCart from "./assets/images/icon-add-to-cart.svg";
 import carbonNeutral from "./assets/images/icon-carbon-neutral.svg";
 import data from "./data.json";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { classNames } from "../../functions";
 import {
+  CheckCircleIcon,
   MinusCircleIcon,
   PlusCircleIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
+import { Button, DialogBackdrop } from "@headlessui/react";
 
-export default function ProjectListWithCart() {
+function ProductListWithCart() {
   const [products] = useState(data);
   const [cartItems, setCartItems] = useState([]);
   const [activeProducts, setActiveProducts] = useState([]);
@@ -18,11 +20,39 @@ export default function ProjectListWithCart() {
     (acc, item) => item.quantity + Number(acc),
     0
   );
+  const [confirmOrder, setConfirmOrder] = useState(false);
 
   const orderTotal = cartItems.reduce(
     (acc, item) => item.total + Number(acc),
     []
   );
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape" && confirmOrder === true) {
+          setConfirmOrder(false);
+        }
+      }
+
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [confirmOrder]
+  );
+
+  function handleStartNew() {
+    setCartItems([]);
+    setActiveProducts([]);
+    setConfirmOrder(false);
+  }
+
+  function handleShowConfirmation() {
+    setConfirmOrder((confirm) => !confirm);
+  }
 
   function handleAddToCart(product) {
     if (cartItems.find((c) => c.id === product.id)) return;
@@ -68,7 +98,7 @@ export default function ProjectListWithCart() {
   }
 
   return (
-    <div className="p-10 bg-rose-50">
+    <div className="p-10 bg-amber-50">
       <div className="grid grid-cols-3 gap-x-10">
         <div className="col-span-2">
           <h1 className="mb-10 text-3xl font-bold">Desserts</h1>
@@ -89,7 +119,7 @@ export default function ProjectListWithCart() {
 
         <div>
           <div className="py-5 bg-white px-7 rounded-2xl">
-            <h2 className="text-xl font-bold text-rose-600">
+            <h2 className="text-xl font-bold text-amber-600">
               Your Cart ({totalItemCount})
             </h2>
 
@@ -97,7 +127,7 @@ export default function ProjectListWithCart() {
               {cartItems.length === 0 && (
                 <div className="flex flex-col items-center mt-10">
                   <img src={emptyCart} alt="" />
-                  <p className="mt-3 text-base font-medium text-center text-rose-700">
+                  <p className="mt-3 text-base font-medium text-center text-amber-700">
                     Your added items will appear here
                   </p>
                 </div>
@@ -120,7 +150,7 @@ export default function ProjectListWithCart() {
                     </span>
                   </p>
 
-                  <div className="flex p-3 mt-4 space-x-2 rounded-lg bg-rose-100">
+                  <div className="flex p-3 mt-4 space-x-2 rounded-lg bg-amber-100">
                     <img src={carbonNeutral} alt="Carbon Neutral" />
                     <p>
                       This is a{" "}
@@ -128,15 +158,26 @@ export default function ProjectListWithCart() {
                     </p>
                   </div>
 
-                  <button className="w-full p-3 mt-3 text-base font-semibold text-white border cursor-pointer bg-rose-600 rounded-3xl">
-                    Confirm Order
-                  </button>
+                  <SecondaryButton
+                    className="mt-4"
+                    onClick={handleShowConfirmation}
+                    text="Confirm Order"
+                  />
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
+
+      {confirmOrder && (
+        <OrderConfirmed
+          cartItems={cartItems}
+          orderTotal={orderTotal}
+          onCloseModal={handleShowConfirmation}
+          onStartNew={handleStartNew}
+        />
+      )}
     </div>
   );
 }
@@ -160,7 +201,7 @@ function ProductCard({
         <img
           src={product.image.desktop}
           className={classNames(
-            active ? "border-3 border-rose-500" : "",
+            active ? "border-3 border-amber-500" : "",
             "rounded-2xl"
           )}
           alt={product.name}
@@ -169,7 +210,7 @@ function ProductCard({
         {!active && (
           <button
             onClick={() => onAdd(product)}
-            className="inline-flex items-center px-8 py-3 -mt-40 text-base font-semibold bg-white border cursor-pointer border-rose-500 rounded-3xl h-fit gap-x-3 hover:text-rose-500"
+            className="inline-flex items-center px-8 py-3 -mt-40 text-base font-semibold bg-white border cursor-pointer border-amber-500 rounded-3xl h-fit gap-x-3 hover:text-amber-500"
           >
             <img src={addToCart} alt="Add" />
             Add to Cart
@@ -177,9 +218,9 @@ function ProductCard({
         )}
 
         {active && (
-          <div
+          <SecondaryButton
             onClick={() => onAdd(product)}
-            className="inline-flex items-center justify-between p-3 -mt-40 text-base font-semibold text-white border w-44 bg-rose-600 rounded-3xl h-fit gap-x-3"
+            className="inline-flex items-center justify-between !w-44 -mt-40 gap-x-3"
           >
             <MinusCircleIcon
               onClick={() => onDecrement(product.id)}
@@ -192,12 +233,12 @@ function ProductCard({
               onClick={() => onIncrement(product.id)}
               className="cursor-pointer size-5"
             />
-          </div>
+          </SecondaryButton>
         )}
       </div>
-      <h2 className="text-sm text-rose-700">{product.category}</h2>
+      <h2 className="text-sm text-amber-700">{product.category}</h2>
       <h3 className="text-lg font-semibold">{product.name}</h3>
-      <p className="text-base font-semibold text-rose-600">
+      <p className="text-base font-semibold text-amber-600">
         ${Number(product.price).toFixed(2)}
       </p>
     </div>
@@ -209,8 +250,8 @@ function CartItem({ cartItem, onDelete }) {
     <div className="flex items-center justify-between py-2.5 border-b border-gray-200">
       <div>
         <p className="text-lg font-semibold">{cartItem.name}</p>
-        <p className="inline-flex space-x-3 font-extralight text-rose-700">
-          <span className="font-semibold text-rose-600">
+        <p className="inline-flex space-x-3 font-extralight text-amber-700">
+          <span className="font-semibold text-amber-600">
             {cartItem.quantity}x
           </span>
           <span>@{Number(cartItem.price).toFixed(2)}</span>
@@ -220,8 +261,85 @@ function CartItem({ cartItem, onDelete }) {
 
       <XCircleIcon
         onClick={() => onDelete(cartItem.id)}
-        className="cursor-pointer size-7 text-rose-300 hover:text-rose-600"
+        className="cursor-pointer size-7 text-amber-300 hover:text-amber-600"
       />
     </div>
   );
 }
+
+function OrderConfirmed({ cartItems, orderTotal, onCloseModal, onStartNew }) {
+  return (
+    <div className="relative z-50">
+      <div className="fixed inset-0 bg-black/50" />
+
+      <div className="fixed inset-0 flex items-center justify-center w-screen p-4">
+        <div className="p-8 mx-auto space-y-5 bg-white shadow-2xl w-xl rounded-xl">
+          <CheckCircleIcon
+            className="text-green-600 size-10"
+            onClick={onCloseModal}
+          />
+          <div>
+            <h2 className="text-5xl font-semibold">Order Confirmed</h2>
+            <p className="mt-3 text-lg font-medium text-amber-800">
+              We hope you enjoy your food!
+            </p>
+          </div>
+
+          <div className="p-5 bg-amber-50 rounded-xl">
+            {cartItems.map((cartItem) => (
+              <div
+                key={cartItem.id}
+                className="flex items-center justify-between py-4 border-b border-gray-100"
+              >
+                <div className="flex items-center space-x-5">
+                  <img
+                    className="rounded-2xl size-16"
+                    src={cartItem.image.thumbnail}
+                    alt=""
+                  />
+                  <div>
+                    <p className="text-base font-semibold">{cartItem.name}</p>
+                    <p className="font-bold text-amber-600">
+                      {cartItem.quantity}x{" "}
+                      <span className="ml-3 font-light">
+                        @ ${Number(cartItem.price).toFixed(2)}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <p className="text-base font-bold">
+                  ${Number(cartItem.total).toFixed(2)}
+                </p>
+              </div>
+            ))}
+
+            <p className="inline-flex items-center justify-between w-full mt-5 text-base">
+              Order Total{" "}
+              <span className="text-2xl font-bold">
+                ${Number(orderTotal).toFixed(2)}
+              </span>
+            </p>
+          </div>
+
+          <SecondaryButton onClick={onStartNew} text="Start New Order" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SecondaryButton({ text, className, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      className={classNames(
+        className,
+        "w-full p-3 text-base font-semibold text-white cursor-pointer bg-amber-800 rounded-3xl"
+      )}
+    >
+      {text ?? children}
+    </button>
+  );
+}
+
+export default ProductListWithCart;

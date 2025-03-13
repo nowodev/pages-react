@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import ReactProjects from "./ReactProjects.jsx";
 import Home from "./Home.jsx";
 import Birthdays from "./ReactProjects/Birthdays.jsx";
-import ProjectListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
+import ProductListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
 
 createRoot(document.getElementById("root")).render(
@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<Home />} />
           <Route path="frontend-mentor">
             <Route index element={<FrontendMentor />} />
-            <Route path="product-list-with-cart" element={<ProjectListWithCart />} />
+            <Route path="product-list-with-cart" element={<ProductListWithCart />} />
           </Route>
           <Route path="react-projects">
             <Route index element={<ReactProjects />} />
