@@ -1,6 +1,6 @@
-import emptyCart from "./assets/images/illustration-empty-cart.svg";
-import addToCart from "./assets/images/icon-add-to-cart.svg";
-import carbonNeutral from "./assets/images/icon-carbon-neutral.svg";
+import emptyCart from "/product-list-images/illustration-empty-cart.svg";
+import addToCart from "/product-list-images/icon-add-to-cart.svg";
+import carbonNeutral from "/product-list-images/icon-carbon-neutral.svg";
 import data from "./data.json";
 import { useEffect, useRef, useState } from "react";
 import { classNames } from "../../functions";
@@ -10,7 +10,6 @@ import {
   PlusCircleIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
-import { Button, DialogBackdrop } from "@headlessui/react";
 
 function ProductListWithCart() {
   const [products] = useState(data);
@@ -98,12 +97,12 @@ function ProductListWithCart() {
   }
 
   return (
-    <div className="p-10 bg-amber-50">
-      <div className="grid grid-cols-3 gap-x-10">
-        <div className="col-span-2">
+    <div className="p-4 lg:p-10 bg-amber-50">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+        <div className="lg:col-span-2">
           <h1 className="mb-10 text-3xl font-bold">Desserts</h1>
 
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid gap-10 lg:grid-cols-3">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -117,7 +116,7 @@ function ProductListWithCart() {
           </div>
         </div>
 
-        <div>
+        <div className="max-w-lg">
           <div className="py-5 bg-white px-7 rounded-2xl">
             <h2 className="text-xl font-bold text-amber-600">
               Your Cart ({totalItemCount})
@@ -195,11 +194,19 @@ function ProductCard({
     ? true
     : false;
 
+  const screenWidth = window.innerWidth;
+
   return (
     <div>
-      <div className="mb-4 text-center">
+      <div className="mb-4 text-center w-fit">
         <img
-          src={product.image.desktop}
+          src={
+            screenWidth <= 480
+              ? product.image.mobile
+              : screenWidth > 480 && screenWidth <= 768
+              ? product.image.tablet
+              : product.image.desktop
+          }
           className={classNames(
             active ? "border-3 border-amber-500" : "",
             "rounded-2xl"
@@ -208,32 +215,39 @@ function ProductCard({
         />
 
         {!active && (
-          <button
-            onClick={() => onAdd(product)}
-            className="inline-flex items-center px-8 py-3 -mt-40 text-base font-semibold bg-white border cursor-pointer border-amber-500 rounded-3xl h-fit gap-x-3 hover:text-amber-500"
-          >
-            <img src={addToCart} alt="Add" />
-            Add to Cart
-          </button>
+          <div className="-mt-7">
+            <button
+              onClick={() => onAdd(product)}
+              className="inline-flex items-center px-8 py-3 text-base font-semibold bg-white border cursor-pointer border-amber-500 rounded-3xl h-fit gap-x-3 hover:text-amber-500"
+            >
+              <img src={addToCart} alt="Add" />
+              Add to Cart
+            </button>
+          </div>
         )}
 
         {active && (
-          <SecondaryButton
-            onClick={() => onAdd(product)}
-            className="inline-flex items-center justify-between !w-44 -mt-40 gap-x-3"
-          >
-            <MinusCircleIcon
-              onClick={() => onDecrement(product.id)}
-              className="cursor-pointer size-5"
-            />
-            <span>
-              {activeProducts.filter((a) => a.id === product.id).at(0).quantity}
-            </span>
-            <PlusCircleIcon
-              onClick={() => onIncrement(product.id)}
-              className="cursor-pointer size-5"
-            />
-          </SecondaryButton>
+          <div className="-mt-7">
+            <SecondaryButton
+              onClick={() => onAdd(product)}
+              className="inline-flex items-center justify-between !w-44 gap-x-3"
+            >
+              <MinusCircleIcon
+                onClick={() => onDecrement(product.id)}
+                className="cursor-pointer size-5"
+              />
+              <span>
+                {
+                  activeProducts.filter((a) => a.id === product.id).at(0)
+                    .quantity
+                }
+              </span>
+              <PlusCircleIcon
+                onClick={() => onIncrement(product.id)}
+                className="cursor-pointer size-5"
+              />
+            </SecondaryButton>
+          </div>
         )}
       </div>
       <h2 className="text-sm text-amber-700">{product.category}</h2>
@@ -269,11 +283,14 @@ function CartItem({ cartItem, onDelete }) {
 
 function OrderConfirmed({ cartItems, orderTotal, onCloseModal, onStartNew }) {
   return (
-    <div className="relative z-50">
-      <div className="fixed inset-0 bg-black/50" />
+    <div className="relative">
+      <div
+        className="fixed inset-0 z-10 bg-black/50"
+        onClick={onCloseModal}
+      ></div>
 
-      <div className="fixed inset-0 flex items-center justify-center w-screen p-4">
-        <div className="p-8 mx-auto space-y-5 bg-white shadow-2xl w-xl rounded-xl">
+      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-center mx-auto md:inset-0">
+        <div className="p-8 mx-auto space-y-5 bg-white shadow-2xl w-xl rounded-t-2xl md:rounded-xl">
           <CheckCircleIcon
             className="text-green-600 size-10"
             onClick={onCloseModal}
