@@ -15,9 +15,8 @@ const actions = [
     icon: ClockIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
-    description:
-      "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.",
-  }
+    description: "Product list with cart coding challenge.",
+  },
 ];
 
 function FrontendMentor() {
