@@ -9,6 +9,7 @@ import Birthdays from "./ReactProjects/Birthdays.jsx";
 import ProductListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
 import CardinalTalent from "./ReactProjects/CardinalTalent.jsx";
+import Single from "./Single.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,13 +19,19 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<Home />} />
           <Route path="frontend-mentor">
             <Route index element={<FrontendMentor />} />
-            <Route path="product-list-with-cart" element={<ProductListWithCart />} />
+            <Route
+              path="product-list-with-cart"
+              element={<ProductListWithCart />}
+            />
           </Route>
           <Route path="react-projects">
             <Route index element={<ReactProjects />} />
             <Route path="birthdays" element={<Birthdays />} />
-            <Route path="cardinaltalent" element={<CardinalTalent />} />
           </Route>
+        </Route>
+
+        <Route element={<Single />}>
+          <Route path="react-projects/cardinaltalent" element={<CardinalTalent />} />
         </Route>
       </Routes>
     </BrowserRouter>
