@@ -302,7 +302,7 @@ function OrderConfirmed({ cartItems, orderTotal, onCloseModal, onStartNew }) {
             </p>
           </div>
 
-          <div className="p-5 bg-amber-50 rounded-xl">
+          <div className="p-5 bg-amber-50 rounded-xl max-h-96 overflow-auto">
             {cartItems.map((cartItem) => (
               <div
                 key={cartItem.id}
