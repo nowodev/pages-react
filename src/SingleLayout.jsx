@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-export default function Single() {
+export default function SingleLayout() {
   return (
     <>
       <div className="min-h-full">

@@ -93,7 +93,7 @@ function ProductListWithCart() {
   }
 
   return (
-    <div className="p-4 lg:p-10 bg-amber-50">
+    <div className="p-4 lg:p-10 bg-amber-50 max-w-[1440px] mx-auto">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <h1 className="mb-10 text-3xl font-bold">Desserts</h1>

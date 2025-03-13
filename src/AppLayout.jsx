@@ -3,7 +3,7 @@ import Header from "./Header";
 import { useState } from "react";
 import Footer from "./Footer";
 
-export default function App() {
+export default function AppLayout() {
   const [footerCaption, setFooterCaption] = useState("");
 
   return (
