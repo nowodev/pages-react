@@ -68,7 +68,7 @@ export default function Birthdays() {
 
   return (
     <div className="w-full py-10 bg-pink-500 h-screen items-center flex">
-      <div className="max-w-lg mx-auto bg-white border border-pink-500 w-full rounded-lg shadow pb-3">
+      <div className="max-w-sm mx-auto bg-white border border-pink-500 w-full rounded-lg shadow pb-3">
         <h1 className="px-6 py-3 text-xl md:text-3xl font-semibold shadow text-center">
           {birthdays.length > 0 ? birthdays.length : 0} Birthdays Today
         </h1>
