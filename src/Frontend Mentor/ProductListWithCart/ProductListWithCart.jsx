@@ -6,9 +6,11 @@ import { SecondaryButton } from "./Button";
 import ProductCard from "./ProductCard";
 import OrderConfirmed from "./OrderConfirmed";
 import CartItem from "./CartItem";
+import Categories from "./Categories";
 
 function ProductListWithCart() {
   const [products] = useState(data);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [cartItems, setCartItems] = useState([]);
   const [activeProducts, setActiveProducts] = useState([]);
   const totalItemCount = cartItems.reduce(
@@ -21,6 +23,9 @@ function ProductListWithCart() {
     (acc, item) => item.total + Number(acc),
     []
   );
+
+  const categories = [...new Set(products)].map((product) => product.category);
+  categories.unshift("All");
 
   useEffect(
     function () {
@@ -92,14 +97,28 @@ function ProductListWithCart() {
     setActiveProducts(newCart);
   }
 
+  function handleShowCategory(category) {
+    setFilteredProducts(products);
+    if (category === "All") return;
+    setFilteredProducts((setFilteredProducts) =>
+      setFilteredProducts.filter((product) => product.category === category)
+    );
+  }
+
   return (
-    <div className="p-4 lg:p-10 bg-amber-50 max-w-[1440px] mx-auto">
+    <div className="p-4 lg:p-10 bg-amber-50 max-w-[1440px] mx-auto min-h-screen">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h1 className="mb-10 text-3xl font-bold">Desserts</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold">Desserts</h1>
+            <Categories
+              categories={categories}
+              onCategory={handleShowCategory}
+            />
+          </div>
 
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 place-content-center">
-            {products.map((product) => (
+          <div className="grid gap-10 mt-10 md:grid-cols-2 lg:grid-cols-3 place-content-center">
+            {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
