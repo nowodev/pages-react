@@ -106,7 +106,7 @@ function ProductListWithCart() {
   }
 
   return (
-    <div className="p-4 lg:p-10 bg-amber-50 max-w-[1440px] mx-auto min-h-screen">
+    <div className="p-4 lg:p-15 bg-amber-50 max-w-[1440px] mx-auto min-h-screen">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between">
@@ -133,13 +133,13 @@ function ProductListWithCart() {
 
         <div className="max-wlg">
           <div className="py-5 bg-white px-7 rounded-2xl">
-            <h2 className="text-xl font-bold text-amber-600">
+            <h2 className="text-2xl font-bold text-amber-600">
               Your Cart ({totalItemCount})
             </h2>
 
             <div>
               {cartItems.length === 0 && (
-                <div className="flex flex-col items-center mt-10">
+                <div className="flex flex-col items-center my-10">
                   <img src={emptyCart} alt="" />
                   <p className="mt-3 text-base font-medium text-center text-amber-700">
                     Your added items will appear here
@@ -148,7 +148,7 @@ function ProductListWithCart() {
               )}
 
               {cartItems.length > 0 && (
-                <div className="w-full mt-3">
+                <div className="w-full my-3">
                   {cartItems.map((cartItem) => (
                     <CartItem
                       key={cartItem.id}

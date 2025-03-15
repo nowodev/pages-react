@@ -38,7 +38,7 @@ export default function ProductCard({
         />
 
         {!active && (
-          <div className="-mt-7">
+          <div className="-mt-5">
             <PrimaryButton
               onClick={() => onAdd(product)}
               className="inline-flex items-center"
@@ -50,10 +50,10 @@ export default function ProductCard({
         )}
 
         {active && (
-          <div className="-mt-7">
+          <div className="-mt-5">
             <SecondaryButton
               onClick={() => onAdd(product)}
-              className="inline-flex items-center justify-between !w-44 gap-x-3"
+              className="inline-flex items-center justify-between py-2 text-xs max-w-35"
             >
               <MinusCircleIcon
                 onClick={() => onDecrement(product.id)}
