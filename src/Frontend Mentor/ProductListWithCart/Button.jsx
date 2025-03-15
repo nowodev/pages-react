@@ -6,7 +6,7 @@ export function PrimaryButton({ text, className, onClick, children }) {
       onClick={onClick}
       className={classNames(
         className,
-        "px-5 py-2 text-xs w-full max-w-35 font-semibold bg-white border cursor-pointer border-amber-500 rounded-3xl h-fit gap-x-1 hover:text-amber-500"
+        "px-8 lg:px-5 py-3 lg:py-2 text-base lg:text-xs lg:w-full lg:max-w-35 font-semibold bg-white border cursor-pointer border-amber-500 rounded-3xl h-fit gap-x-3 lg:gap-x-1 hover:text-amber-500"
       )}
     >
       {text ?? children}
