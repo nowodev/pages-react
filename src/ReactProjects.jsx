@@ -1,6 +1,7 @@
 import {
   AcademicCapIcon,
   BanknotesIcon,
+  CalculatorIcon,
   CheckBadgeIcon,
   ClockIcon,
   ReceiptRefundIcon,
@@ -15,8 +16,7 @@ const actions = [
     icon: ClockIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
-    description:
-      "A list of birthday data with a button to empty the list",
+    description: "A list of birthday data with a button to empty the list",
   },
   {
     title: "Cardinal Talent",
@@ -26,15 +26,15 @@ const actions = [
     iconBackground: "bg-purple-50",
     description: "A revamp of the Cardinal Talent website.",
   },
-  // {
-  //   title: "Schedule a one-on-one",
-  //   href: "#",
-  //   icon: UsersIcon,
-  //   iconForeground: "text-sky-700",
-  //   iconBackground: "bg-sky-50",
-  //   description:
-  //     "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.",
-  // },
+  {
+    title: "Calculator",
+    href: "calculator",
+    icon: CalculatorIcon,
+    iconForeground: "text-sky-700",
+    iconBackground: "bg-sky-50",
+    description:
+      "A basic calculator that stores calculated history that is accessible at any time",
+  },
   // {
   //   title: "Payroll",
   //   href: "#",
