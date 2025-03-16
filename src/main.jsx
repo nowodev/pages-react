@@ -5,12 +5,12 @@ import AppLayout from "./AppLayout.jsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import ReactProjects from "./ReactProjects.jsx";
 import Home from "./Home.jsx";
-import Birthdays from "./ReactProjects/Birthdays.jsx";
-import ProductListWithCart from "./Frontend Mentor/ProductListWithCart/ProductListWithCart.jsx";
+import Birthdays from "./React Projects/Birthdays.jsx";
+import ProductListWithCart from "./Frontend Mentor/Product List With Cart/index.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
-import CardinalTalent from "./ReactProjects/CardinalTalent.jsx";
+import CardinalTalent from "./React Projects/CardinalTalent.jsx";
 import SingleLayout from "./SingleLayout.jsx";
-import Calculator from "./ReactProjects/Calculator.jsx";
+import Calculator from "./React Projects/Calculator.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
