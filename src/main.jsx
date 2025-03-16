@@ -11,6 +11,7 @@ import FrontendMentor from "./FrontendMentor.jsx";
 import CardinalTalent from "./React Projects/CardinalTalent.jsx";
 import SingleLayout from "./SingleLayout.jsx";
 import Calculator from "./React Projects/Calculator.jsx";
+import AdviceGenerator from "./Frontend Mentor/Advice Generator/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")).render(
               path="product-list-with-cart"
               element={<ProductListWithCart />}
             />
+            <Route path="advice-generator" element={<AdviceGenerator />} />
           </Route>
           <Route path="react-projects">
             <Route path="birthdays" element={<Birthdays />} />

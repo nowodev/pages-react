@@ -17,6 +17,14 @@ const actions = [
     iconBackground: "bg-teal-50",
     description: "Product list with cart coding challenge.",
   },
+  {
+    title: "Adivce Generator",
+    href: "advice-generator",
+    icon: ClockIcon,
+    iconForeground: "text-cyan-700",
+    iconBackground: "bg-cyan-50",
+    description: "An advice generator app using the Advice Slip API.",
+  },
 ];
 
 function FrontendMentor() {
