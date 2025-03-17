@@ -25,6 +25,14 @@ const actions = [
     iconBackground: "bg-cyan-50",
     description: "An advice generator app using the Advice Slip API.",
   },
+  {
+    title: "Mortgage Repayment Calculator",
+    href: "mortgage-repayment-calculator",
+    icon: BanknotesIcon,
+    iconForeground: "text-amber-700",
+    iconBackground: "bg-amber-50",
+    description: "An advice generator app using the Advice Slip API.",
+  },
 ];
 
 function FrontendMentor() {

@@ -12,6 +12,7 @@ import CardinalTalent from "./React Projects/CardinalTalent.jsx";
 import SingleLayout from "./SingleLayout.jsx";
 import Calculator from "./React Projects/Calculator.jsx";
 import AdviceGenerator from "./Frontend Mentor/Advice Generator/index.jsx";
+import MortgageRepaymentCalculator from "./Frontend Mentor/Mortgage Repayment Calculator/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -30,7 +31,12 @@ createRoot(document.getElementById("root")).render(
               element={<ProductListWithCart />}
             />
             <Route path="advice-generator" element={<AdviceGenerator />} />
+            <Route
+              path="mortgage-repayment-calculator"
+              element={<MortgageRepaymentCalculator />}
+            />
           </Route>
+
           <Route path="react-projects">
             <Route path="birthdays" element={<Birthdays />} />
             <Route path="cardinaltalent" element={<CardinalTalent />} />
