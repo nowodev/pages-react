@@ -27,8 +27,8 @@ export default function AdviceGenerator() {
   return (
     <div className="bg-slate-800">
       <div className="container flex flex-col items-center justify-center h-screen px-4 mx-auto">
-        <div className="max-w-lg p-10 space-y-5 text-center bg-gray-600 rounded-md">
-          <h1 className="text-xs font-bold uppercase text-emerald-500">
+        <div className="max-w-lg p-10 space-y-5 text-center bg-gray-600 rounded-2xl">
+          <h1 className="text-base font-bold uppercase text-emerald-500">
             Advice #{advice.id}
           </h1>
           <p className="text-3xl font-semibold text-white">{advice.advice}</p>
@@ -38,7 +38,7 @@ export default function AdviceGenerator() {
         <button
           disabled={isloading}
           onClick={fetchAdvice}
-          className="p-3 -mt-6 rounded-full cursor-pointer hover:shadow-2xl hover:scale-110 shadow-emerald-300 bg-emerald-600 w-fit"
+          className="p-3 -mt-6 rounded-full cursor-pointer round-shadow hover:scale-110 bg-emerald-600 w-fit"
         >
           <img src={dice} alt="dice" />
         </button>

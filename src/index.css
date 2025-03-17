@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.round-shadow:hover {
+  box-shadow: 0 0 30px 3px oklch(0.845 0.143 164.978);
+}
