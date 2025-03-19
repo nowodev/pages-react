@@ -44,7 +44,7 @@ export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
       <section className="flex items-center justify-between px-6 py-3 rounded-md bg-blue-200/20">
-        <h1 className="text-xl font-semibold">
+        <h1 className="md:text-xl font-semibold">
           Want to do Bulk Resume Upload?
         </h1>
 
@@ -65,18 +65,21 @@ export default function CardinalRewards() {
 
       <section className="p-6 rounded-md bg-blue-900/10">
         <h2 className="text-base font-semibold">Search Jobs</h2>
-        <div className="flex mt-2 gap-x-5">
+        <div className="grid grid-cols-2 mt-2 gap-y-5 gap-x-5 md:flex">
           <input
             type="text"
+            placeholder="Keyword"
             className="block w-full rounded-md bg-white px-3 py-2.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
           />
+
           <input
             type="text"
+            placeholder="City/Country"
             className="block w-full rounded-md bg-white px-3 py-2.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
           />
 
           <div className="grid w-full grid-cols-1">
-            <select className="w-full col-start-1 row-start-1 pl-3 pr-8 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+            <select className="w-full col-start-1 row-start-1 pl-3 py-2.5 pr-8 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
               <option>Include Remote</option>
             </select>
             <ChevronDownIcon
@@ -84,12 +87,13 @@ export default function CardinalRewards() {
               className="self-center col-start-1 row-start-1 mr-2 text-gray-500 pointer-events-none size-5 justify-self-end sm:size-4"
             />
           </div>
+
           <div className="grid w-full grid-cols-1">
             <select
               id="location"
               name="location"
               defaultValue="Canada"
-              className="w-full col-start-1 row-start-1 pl-3 pr-8 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+              className="w-full col-start-1 row-start-1 pl-3 pr-8 py-2.5 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
             >
               <option>Job Type</option>
             </select>
@@ -99,7 +103,7 @@ export default function CardinalRewards() {
             />
           </div>
 
-          <Button className="flex items-center text-sm gap-x-2">
+          <Button className="flex items-center text-sm gap-x-2 col-span-2 justify-center">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -114,9 +118,11 @@ export default function CardinalRewards() {
           </Button>
         </div>
 
-        <div className="flex justify-end mt-4 space-x-4">
-          <div className="flex items-center px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
-            <input type="checkbox" />
+        <div className="flex justify-between md:justify-end mt-4 space-x-4">
+          <div className="flex items-start px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
+            <span className="h-[1lh] flex items-center">
+              <input type="checkbox" />
+            </span>
             <span>Only Urgent Requirements</span>
           </div>
           <button className="flex items-center px-2 py-1 space-x-1 text-xs font-semibold text-blue-600 bg-white border border-blue-600 rounded w-fit">
