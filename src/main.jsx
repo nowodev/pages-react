@@ -8,11 +8,11 @@ import Home from "./Home.jsx";
 import Birthdays from "./React Projects/Birthdays.jsx";
 import ProductListWithCart from "./Frontend Mentor/Product List With Cart/index.jsx";
 import FrontendMentor from "./FrontendMentor.jsx";
-import CardinalTalent from "./React Projects/CardinalTalent.jsx";
 import SingleLayout from "./SingleLayout.jsx";
 import Calculator from "./React Projects/Calculator.jsx";
 import AdviceGenerator from "./Frontend Mentor/Advice Generator/index.jsx";
 import MortgageRepaymentCalculator from "./Frontend Mentor/Mortgage Repayment Calculator/index.jsx";
+import CardinalTalent from "./React Projects/CardinalHire/CardinalTalent.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -40,6 +40,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="react-projects">
             <Route path="birthdays" element={<Birthdays />} />
             <Route path="cardinaltalent" element={<CardinalTalent />} />
+            <Route path="cardinalrewards" element={<CardinalRewards />} />
             <Route path="calculator" element={<Calculator />} />
           </Route>
         </Route>

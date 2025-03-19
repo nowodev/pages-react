@@ -6,9 +6,10 @@ import clearCapital from "/cardinaltalent/clear-capital.png";
 import talent from "/cardinaltalent/talent.png";
 import { Field, Input, Label } from "@headlessui/react";
 import { Bars3Icon, CloudArrowUpIcon } from "@heroicons/react/24/solid";
-import { classNames } from "../functions";
+import { classNames } from "../../functions";
 import { Link } from "react-router";
 import { useState } from "react";
+import Button from "./Button";
 
 const navigation = [
   { name: "AI Power Networker", href: "#" },
@@ -252,19 +253,5 @@ function Form({ label, name, required = true }) {
         />
       </Field>
     </>
-  );
-}
-
-function Button({ text, className, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      className={classNames(
-        className,
-        "px-6 py-2 text-base font-semibold bg-blue-800 text-white border cursor-pointer rounded-lg gap-x-3 hover:bg-blue-900"
-      )}
-    >
-      {text ?? children}
-    </button>
   );
 }
