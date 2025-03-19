@@ -56,17 +56,17 @@ export default function MortgageRepaymentCalculator() {
 
   return (
     <div className="bg-cyan-100">
-      <div className="container flex flex-col items-center justify-center h-screen px-4 mx-auto sm:px-6 lg:px-8">
-        <div className="max-w-4xl bg-white rounded-3xl">
-          <div className="grid grid-cols-2">
+      <div className="container flex flex-col items-center justify-center mx-auto md:h-screen sm:px-6 md:px-8">
+        <div className="max-w-4xl bg-white md:rounded-3xl">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-10">
-              <div className="flex items-baseline justify-between">
+              <div className="flex flex-col items-baseline justify-between lg:flex-row">
                 <h1 className="text-2xl font-semibold text-slate-700">
                   Mortgage Calculator
                 </h1>
 
                 <button
-                  className="underline cursor-pointer text-slate-500"
+                  className="mt-2 underline cursor-pointer text-slate-500 lg:mt-0"
                   onClick={handleClear}
                 >
                   Clear All
@@ -83,7 +83,7 @@ export default function MortgageRepaymentCalculator() {
                     onSet={setAmount}
                   />
 
-                  <div className="flex gap-x-5">
+                  <div className="flex flex-col lg:flex-row gap-y-5 gap-x-5">
                     <InputField
                       label="Mortgage Term"
                       fix="years"
@@ -104,7 +104,7 @@ export default function MortgageRepaymentCalculator() {
 
                   <MortgageType onSet={setType} />
 
-                  <button className="flex items-center px-8 py-3 mt-10 font-bold cursor-pointer bg-lime-300 rounded-3xl text-slate-700 focus:outline-none">
+                  <button className="flex items-center justify-center w-full py-3 mt-10 font-bold cursor-pointer lg:w-fit lg:px-8 bg-lime-300 rounded-3xl text-slate-700 focus:outline-none">
                     <img src={calculator} alt="" className="mr-3" />
                     Calculate Repayments
                   </button>
@@ -113,10 +113,10 @@ export default function MortgageRepaymentCalculator() {
             </div>
 
             <div>
-              <div className="bg-slate-700 h-full rounded-r-3xl rounded-bl-[5rem]">
+              <div className="bg-slate-700 h-full rounded-none md:rounded-r-3xl md:rounded-bl-[5rem] ">
                 {monthlyRepayment === 0 && (
-                  <div className="flex flex-col items-center justify-center h-full px-4 space-y-3 text-center sm:px-6 lg:px-8">
-                    <img src={empty} alt="" />
+                  <div className="flex flex-col items-center justify-center h-full px-8 py-10 space-y-3 text-center">
+                    <img src={empty} alt="Empty" />
                     <p className="text-2xl font-semibold text-slate-100">
                       Results shown here
                     </p>
@@ -240,14 +240,14 @@ function MortgageType({ onSet }) {
           <Radio
             key={type.name}
             value={type}
-            className="relative flex px-3 py-2.5 transition border border-slate-300 focus:border-lime-400 focus:bg-lime-400/10 rounded-md cursor-pointer group focus:outline-none"
+            className="relative flex px-3 py-3 transition border rounded-md cursor-pointer border-slate-300 focus:border-lime-400 hover:bg-lime-400/10 focus:bg-lime-400/10 group focus:outline-none"
           >
-            <div className="flex items-center w-full space-x-2 ">
+            <div className="flex items-center w-full space-x-3 ">
               <span className="border rounded-full size-5 border-slate-500"></span>
               <span
                 className={clsx(
                   selected?.id === type.id ? "bg-slate-500 border" : "",
-                  "size-3 -ml-6 border-slate-500 rounded-full"
+                  "size-3 -ml-7 border-slate-500 rounded-full"
                 )}
               ></span>
               <p className="text-base font-semibold text-slate-500">
