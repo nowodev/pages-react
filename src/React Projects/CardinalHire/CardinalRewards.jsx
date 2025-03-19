@@ -43,8 +43,24 @@ const people = [
 export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
+      <section className="text-blue-600 ">
+        <h1 className="text-5xl font-bold">
+          Make up to $50,000 per hire
+        </h1>
+        <p className="font-medium text-base/10">
+          by inviting your nwtwork or uploading candidate referrals
+        </p>
+
+        <div className="mt-3 space-y-2">
+          <p className="font-bold">Upload candidate resume to see matching rewards</p>
+          <button className="px-6 py-2 text-xs font-semibold border border-blue-600 outline-none cursor-pointer hover:bg-blue-600 hover:text-white rounded-3xl">
+            Upload resume
+          </button>
+        </div>
+      </section>
+
       <section className="flex items-center justify-between px-6 py-3 rounded-md bg-blue-200/20">
-        <h1 className="md:text-xl font-semibold">
+        <h1 className="font-semibold md:text-xl">
           Want to do Bulk Resume Upload?
         </h1>
 
@@ -103,7 +119,7 @@ export default function CardinalRewards() {
             />
           </div>
 
-          <Button className="flex items-center text-sm gap-x-2 col-span-2 justify-center">
+          <Button className="flex items-center justify-center col-span-2 text-sm gap-x-2">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,14 +134,14 @@ export default function CardinalRewards() {
           </Button>
         </div>
 
-        <div className="flex justify-between md:justify-end mt-4 space-x-4">
+        <div className="flex justify-between mt-4 space-x-4 md:justify-end">
           <div className="flex items-start px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
             <span className="h-[1lh] flex items-center">
               <input type="checkbox" />
             </span>
             <span>Only Urgent Requirements</span>
           </div>
-          <button className="flex items-center px-2 py-1 space-x-1 text-xs font-semibold text-blue-600 bg-white border border-blue-600 rounded w-fit">
+          <button className="flex items-center px-2 py-1 space-x-1 text-xs font-semibold text-blue-600 bg-white border border-blue-600 rounded outline-none w-fit">
             Save Search As Alert
           </button>
         </div>

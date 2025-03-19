@@ -6,7 +6,7 @@ export default function Button({ text, className, onClick, children }) {
       onClick={onClick}
       className={classNames(
         className,
-        "px-4 py-2 text-base font-semibold bg-blue-800 text-white border cursor-pointer rounded-lg hover:bg-blue-900"
+    "px-4 py-2 text-base font-semibold bg-blue-800 text-white border cursor-pointer rounded-lg hover:bg-blue-900 outline-none"
       )}
     >
       {text ?? children}
