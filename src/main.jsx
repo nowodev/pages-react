@@ -13,6 +13,7 @@ import Calculator from "./React Projects/Calculator.jsx";
 import AdviceGenerator from "./Frontend Mentor/Advice Generator/index.jsx";
 import MortgageRepaymentCalculator from "./Frontend Mentor/Mortgage Repayment Calculator/index.jsx";
 import CardinalTalent from "./React Projects/CardinalHire/CardinalTalent.jsx";
+import CardinalRewards from "./React Projects/CardinalHire/CardinalRewards.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
