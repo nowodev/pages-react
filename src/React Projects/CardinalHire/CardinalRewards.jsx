@@ -44,15 +44,15 @@ export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
       <section className="text-blue-600 ">
-        <h1 className="text-5xl font-bold">
-          Make up to $50,000 per hire
-        </h1>
+        <h1 className="text-5xl font-bold">Make up to $50,000 per hire</h1>
         <p className="font-medium text-base/10">
           by inviting your nwtwork or uploading candidate referrals
         </p>
 
         <div className="mt-3 space-y-2">
-          <p className="font-bold">Upload candidate resume to see matching rewards</p>
+          <p className="font-bold">
+            Upload candidate resume to see matching rewards
+          </p>
           <button className="px-6 py-2 text-xs font-semibold border border-blue-600 outline-none cursor-pointer hover:bg-blue-600 hover:text-white rounded-3xl">
             Upload resume
           </button>
@@ -135,7 +135,7 @@ export default function CardinalRewards() {
         </div>
 
         <div className="flex justify-between mt-4 space-x-4 md:justify-end">
-          <div className="flex items-start px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
+          <div className="flex items-center px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
             <span className="h-[1lh] flex items-center">
               <input type="checkbox" />
             </span>
@@ -191,7 +191,7 @@ export default function CardinalRewards() {
                     <tr key={i} className="even:bg-gray-50">
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                         <p className="text-base font-semibold text-blue-600">
-                          {person.name}
+                          {person.title}
                         </p>
                         <p className="mt-2 text-xs text-gray-400">
                           $24 - 46k/Year | &nbsp;&nbsp;&nbsp;| 📍 IN
@@ -255,7 +255,7 @@ export default function CardinalRewards() {
 function Links() {
   return (
     <div className="flex space-x-3">
-      <button className="p-1 border rounded-full cursor-pointer hover:-translate-y-1">
+      <button className="p-1 border rounded-full cursor-pointer text-blue-500 hover:text-blue-700">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -266,7 +266,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer hover:-translate-y-1">
+      <button className="p-1 border rounded-full cursor-pointer text-blue-700 hover:text-blue-900">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -277,7 +277,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer hover:-translate-y-1">
+      <button className="p-1 border rounded-full cursor-pointer text-blue-600 hover:text-blue-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -288,7 +288,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer hover:-translate-y-1">
+      <button className="p-1 border rounded-full cursor-pointer text-black hover:text-gray-700">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -299,7 +299,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer hover:-translate-y-1">
+      <button className="p-1 border rounded-full cursor-pointer text-blue-400 hover:text-blue-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
