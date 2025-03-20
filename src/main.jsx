@@ -14,6 +14,7 @@ import AdviceGenerator from "./Frontend Mentor/Advice Generator/index.jsx";
 import MortgageRepaymentCalculator from "./Frontend Mentor/Mortgage Repayment Calculator/index.jsx";
 import CardinalTalent from "./React Projects/CardinalHire/CardinalTalent.jsx";
 import CardinalRewards from "./React Projects/CardinalHire/CardinalRewards.jsx";
+import CardinalLeaderboard from "./React Projects/CardinalHire/CardinalLeaderboard.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -42,6 +43,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="birthdays" element={<Birthdays />} />
             <Route path="cardinaltalent" element={<CardinalTalent />} />
             <Route path="cardinalrewards" element={<CardinalRewards />} />
+            <Route path="cardinalleaderboard" element={<CardinalLeaderboard />} />
             <Route path="calculator" element={<Calculator />} />
           </Route>
         </Route>
