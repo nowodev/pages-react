@@ -8,7 +8,7 @@ export default function AppLayout() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-100">
         <Header />
 
         <main className="-mt-20 flex-1">

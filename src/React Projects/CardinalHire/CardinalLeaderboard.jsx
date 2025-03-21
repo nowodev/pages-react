@@ -6,28 +6,28 @@ const people = [
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
-      "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=Lindsay+Walton",
+      "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
     earning: "50,000",
   },
   {
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
-      "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=Lindsay+Walton",
+      "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
     earning: "50,000",
   },
   {
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
-      "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=Lindsay+Walton",
+      "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
     earning: "50,000",
   },
   {
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
-      "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=Lindsay+Walton",
+      "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
     earning: "50,000",
   },
 ];
@@ -35,9 +35,9 @@ const people = [
 export default function CardinalLeaderboard() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
-      <section className="flex items-center justify-between px-6 py-3 space-x-3 rounded-md bg-blue-200/20">
+      <section className="flex items-center justify-between px-6 py-3 space-x-3 rounded-md bg-[#F2F6FF]">
         <div>
-          <h1 className="font-medium text-blue-600 text-3xl md:text-5xl tracking-wide">
+          <h1 className="font-medium text-[#004182] text-3xl md:text-5xl tracking-wide">
             Leaderboard
           </h1>
           <p className="text-sm md:text-lg mt-2 tracking-wide">
@@ -81,7 +81,7 @@ export default function CardinalLeaderboard() {
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                         <p
                           className={clsx(
-                            i === 0 ? "text-blue-900 font-semibold text-xl" : ""
+                            i === 0 ? "text-[#004182] font-semibold text-xl" : ""
                           )}
                         >
                           {i + 1}
@@ -100,7 +100,7 @@ export default function CardinalLeaderboard() {
                       <td className="px-3 py-4 text-sm whitespace-nowrap">
                         <p
                           className={clsx(
-                            i === 0 ? "text-blue-900 text-xl font-semibold" : ""
+                            i === 0 ? "text-[#004182] text-xl font-semibold" : ""
                           )}
                         >
                           ${person.earning}
