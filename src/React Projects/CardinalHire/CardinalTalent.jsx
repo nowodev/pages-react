@@ -6,10 +6,9 @@ import clearCapital from "/cardinaltalent/clear-capital.png";
 import talent from "/cardinaltalent/talent.png";
 import { Field, Input, Label } from "@headlessui/react";
 import { Bars3Icon, CloudArrowUpIcon } from "@heroicons/react/24/solid";
-import { classNames } from "../../functions";
 import { Link } from "react-router";
 import { useState } from "react";
-import Button from "./Button";
+import { MainButton } from "./Button";
 
 const navigation = [
   { name: "AI Power Networker", href: "#" },
@@ -133,7 +132,7 @@ export default function CardinalTalent() {
                 </div>
 
                 <div className="text-center">
-                  <Button text="Call Me Now" />
+                  <MainButton text="Call Me Now" />
                 </div>
               </div>
             </div>
@@ -168,7 +167,7 @@ export default function CardinalTalent() {
               partnerships.
             </p>
 
-            <Button text="Apply as Talent" />
+            <MainButton text="Apply as Talent" />
 
             <img src={talent} alt="Talent" />
           </section>
@@ -211,7 +210,7 @@ export default function CardinalTalent() {
               Gain access to top Silicon Valley companies, lifetime
               certification, and reliable income stability.{" "}
             </h2>
-            <Button text="Apply as Talent" />
+            <MainButton text="Apply as Talent" />
           </section>
         </div>
 

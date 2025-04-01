@@ -14,21 +14,21 @@ const people = [
     email: "lindsay.walton@example.com",
     image:
       "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
-    earning: "50,000",
+    earning: "40,000",
   },
   {
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
       "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
-    earning: "50,000",
+    earning: "30,000",
   },
   {
     name: "Lindsay Walton",
     email: "lindsay.walton@example.com",
     image:
       "https://ui-avatars.com/api/?background=004182&color=fff&name=Lindsay+Walton",
-    earning: "50,000",
+    earning: "20,000",
   },
 ];
 
@@ -40,9 +40,9 @@ export default function CardinalLeaderboard() {
           <h1 className="font-medium text-[#004182] text-3xl md:text-5xl tracking-wide">
             Leaderboard
           </h1>
-          <p className="text-sm md:text-lg mt-2 tracking-wide">
+          {/* <p className="text-sm md:text-lg mt-2 tracking-wide">
             Potential to earn Up to $10 Million Commission (You wish)
-          </p>
+          </p> */}
         </div>
 
         <img className="size-24" src={board} alt="Board" />

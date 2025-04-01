@@ -1,6 +1,10 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import Button from "./Button";
+import { MainButton, MiniButton } from "./Button";
 import clsx from "clsx";
+import resume from "./resume.png";
+import cloud from "./cloud.png";
+import resumes from "./resumes.png";
+import company from "./company.png";
 
 const people = [
   {
@@ -9,6 +13,7 @@ const people = [
     email: "lindsay.walton@example.com",
     role: "Member",
     matched: "30%",
+    reward: "1000",
   },
   {
     name: "Lindsay Walton",
@@ -16,6 +21,7 @@ const people = [
     email: "lindsay.walton@example.com",
     role: "Member",
     matched: "Not Yet Matched",
+    reward: "1000",
   },
   {
     name: "Lindsay Walton",
@@ -23,6 +29,7 @@ const people = [
     email: "lindsay.walton@example.com",
     role: "Member",
     matched: "Not Yet Matched",
+    reward: "1000",
   },
   {
     name: "Lindsay Walton",
@@ -30,6 +37,7 @@ const people = [
     email: "lindsay.walton@example.com",
     role: "Member",
     matched: "Not Yet Matched",
+    reward: "1000",
   },
   {
     name: "Lindsay Walton",
@@ -37,114 +45,250 @@ const people = [
     email: "lindsay.walton@example.com",
     role: "Member",
     matched: "70%",
+    reward: "1000",
   },
 ];
 
 export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
-      <section className="text-blue-600 ">
-        <h1 className="text-5xl font-bold">Make up to $50,000 per hire</h1>
-        <p className="font-medium text-base/10">
-          by inviting your nwtwork or uploading candidate referrals
+      <section className="flex flex-col items-center">
+        <h1 className="text-4xl mb-3 text-red-500">Search for Employers</h1>
+        <p className="text-lg font-light mb-6">
+          Or upload a resume and see job matches!
         </p>
 
-        <div className="mt-3 space-y-2">
-          <p className="font-bold">
-            Upload candidate resume to see matching rewards
-          </p>
-          <button className="px-6 py-2 text-xs font-semibold border border-blue-600 outline-none cursor-pointer hover:bg-blue-600 hover:text-white rounded-3xl">
-            Upload resume
-          </button>
+        <div className="flex space-x-4 w-1/2">
+          <div className="relative flex-1 rounded-lg border border-dashed border-blue-300 bg-gray-50 p-6 flex flex-col items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+            <div className="mb-2 flex items-center justify-center">
+              <div className="relative mr-10">
+                <img src={resume} alt="Resume" />
+              </div>
+              <div className="relative">
+                <img src={cloud} alt="Upload" />
+              </div>
+            </div>
+            <p className="font-medium text-gray-800">Upload</p>
+            <input
+              type="file"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+          </div>
+
+          <div className="relative flex-1 rounded-lg border border-dashed border-blue-300 bg-gray-50 p-6 flex flex-col items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+          <div className="mb-2 flex items-center justify-center">
+              <div className="relative mr-10">
+                <img src={resumes} alt="Resumes" />
+              </div>
+              <div className="relative">
+                <img src={cloud} alt="Upload" />
+              </div>
+            </div>
+            <p className="font-medium text-gray-800">Bulk Upload</p>
+            <input
+              type="file"
+              multiple
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+          </div>
         </div>
       </section>
 
-      <section className="flex items-center justify-between px-6 py-3 rounded-md bg-blue-200/20">
-        <h1 className="font-semibold md:text-xl">
-          Want to do Bulk Resume Upload?
-        </h1>
-
-        <Button className="flex items-center text-sm gap-x-2">
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-5"
-            >
-              <path d="M12 12.5858L16.2426 16.8284L14.8284 18.2426L13 16.415V22H11V16.413L9.17157 18.2426L7.75736 16.8284L12 12.5858ZM12 2C15.5934 2 18.5544 4.70761 18.9541 8.19395C21.2858 8.83154 23 10.9656 23 13.5C23 16.3688 20.8036 18.7246 18.0006 18.9776L18 17C18 13.6863 15.3137 11 12 11C8.7616 11 6.12243 13.5656 6.00414 16.7751L6 17L6.00039 18.9776C3.19696 18.7252 1 16.3692 1 13.5C1 10.9656 2.71424 8.83154 5.04648 8.19411C5.44561 4.70761 8.40661 2 12 2Z"></path>
-            </svg>
-          </span>
-          Upload Bulk Resumes
-        </Button>
-      </section>
-
-      <section className="p-6 rounded-md bg-blue-900/10">
-        <h2 className="text-base font-semibold">Search Jobs</h2>
-        <div className="grid grid-cols-2 mt-2 gap-y-5 gap-x-5 md:flex">
-          <input
-            type="text"
-            placeholder="Keyword"
-            className="block w-full rounded-md bg-white px-3 py-2.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
-          />
-
-          <input
-            type="text"
-            placeholder="City/Country"
-            className="block w-full rounded-md bg-white px-3 py-2.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
-          />
-
-          <div className="grid w-full grid-cols-1">
-            <select className="w-full col-start-1 row-start-1 pl-3 py-2.5 pr-8 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
-              <option>Include Remote</option>
-            </select>
-            <ChevronDownIcon
-              aria-hidden="true"
-              className="self-center col-start-1 row-start-1 mr-2 text-gray-500 pointer-events-none size-5 justify-self-end sm:size-4"
+      <section className="mt-10 space-y-3">
+        <div className="inline-flex gap-x-4">
+          <div className="w-64 flex">
+            <input
+              type="text"
+              className="block w-full rounded-l-md bg-white py-1.5 px-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
+              placeholder="Search"
             />
-          </div>
-
-          <div className="grid w-full grid-cols-1">
-            <select
-              id="location"
-              name="location"
-              defaultValue="Canada"
-              className="w-full col-start-1 row-start-1 pl-3 pr-8 py-2.5 text-base text-gray-900 bg-white rounded-md appearance-none outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+            <button
+              type="button"
+              className="rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
             >
-              <option>Job Type</option>
-            </select>
-            <ChevronDownIcon
-              aria-hidden="true"
-              className="self-center col-start-1 row-start-1 mr-2 text-gray-500 pointer-events-none size-5 justify-self-end sm:size-4"
-            />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
           </div>
+          <div className="w-64 flex">
+            <input
+              type="text"
+              className="block w-full rounded-l-md bg-white py-1.5 px-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
+              placeholder="City/Country"
+            />
+            <button
+              type="button"
+              className="rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-          <Button className="flex items-center justify-center col-span-2 text-sm gap-x-2">
+        <p>Filter By:</p>
+        <div className="space-x-3">
+          <MiniButton className="inline-flex gap-x-1">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                fill="none"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                strokeWidth="1.5"
+                stroke="currentColor"
                 className="size-5"
               >
-                <path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
               </svg>
             </span>
-            Search
-          </Button>
+            Design & 2 other
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+            </span>
+            Skills
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </span>
+            Rate
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </span>
+            Commitment
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"
+                />
+              </svg>
+            </span>
+            Job Type
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M19.3788 15.1057C20.9258 11.4421 19.5373 7.11431 16.0042 5.0745C13.4511 3.60046 10.4232 3.69365 8.03452 5.0556L7.04216 3.31879C10.028 1.61639 13.8128 1.4999 17.0042 3.34245C21.4949 5.93513 23.2139 11.4848 21.1217 16.112L22.4635 16.8867L18.2984 19.1008L18.1334 14.3867L19.3788 15.1057ZM4.62961 8.89968C3.08263 12.5633 4.47116 16.8911 8.00421 18.9309C10.5573 20.4049 13.5851 20.3118 15.9737 18.9499L16.9661 20.6867C13.9803 22.389 10.1956 22.5055 7.00421 20.663C2.51357 18.0703 0.794565 12.5206 2.88672 7.89342L1.54492 7.11873L5.70999 4.90463L5.87505 9.61873L4.62961 8.89968ZM8.50421 14.0027H14.0042C14.2804 14.0027 14.5042 13.7788 14.5042 13.5027C14.5042 13.2266 14.2804 13.0027 14.0042 13.0027H10.0042C8.6235 13.0027 7.50421 11.8834 7.50421 10.5027C7.50421 9.122 8.6235 8.00271 10.0042 8.00271H11.0042V7.00271H13.0042V8.00271H15.5042V10.0027H10.0042C9.72807 10.0027 9.50421 10.2266 9.50421 10.5027C9.50421 10.7788 9.72807 11.0027 10.0042 11.0027H14.0042C15.3849 11.0027 16.5042 12.122 16.5042 13.5027C16.5042 14.8834 15.3849 16.0027 14.0042 16.0027H13.0042V17.0027H11.0042V16.0027H8.50421V14.0027Z"></path>
+              </svg>
+            </span>
+            Salary Range
+          </MiniButton>
+          <MiniButton className="inline-flex gap-x-1 !border-blue-300 hover:bg-transparent !text-blue-500">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </span>
+            Clear all
+          </MiniButton>
         </div>
 
-        <div className="flex justify-between mt-4 space-x-4 md:justify-end">
-          <div className="flex items-center px-2 py-1 space-x-1 text-xs font-medium text-white bg-blue-600 rounded w-fit">
-            <span className="h-[1lh] flex items-center">
-              <input type="checkbox" />
-            </span>
-            <span>Only Urgent Requirements</span>
-          </div>
-          <button className="flex items-center px-2 py-1 space-x-1 text-xs font-semibold text-blue-600 bg-white border border-blue-600 rounded outline-none w-fit">
-            Save Search As Alert
-          </button>
-        </div>
+        <p className="text-sm">
+          <span className="font-bold">160</span> jobs found
+        </p>
       </section>
 
       <section className="flow-root mt-8">
@@ -158,31 +302,31 @@ export default function CardinalRewards() {
                       scope="col"
                       className="py-3.5 pr-3 pl-4 text-left text-sm font-bold text-gray-900 sm:pl-6"
                     >
-                      Job Title
+                      Job
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-bold text-gray-900"
                     >
-                      Rewards
+                      Match %
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-bold text-gray-900"
                     >
-                      Status
+                      Reward
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-bold text-gray-900"
                     >
-                      Share
+                      Social
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-bold text-gray-900"
                     >
-                      Resume
+                      <span className="sr-only">Resume</span>
                     </th>
                   </tr>
                 </thead>
@@ -190,55 +334,48 @@ export default function CardinalRewards() {
                   {people.map((person, i) => (
                     <tr key={i} className="even:bg-gray-50">
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                        <p className="text-base font-semibold text-blue-600">
-                          {person.title}
-                        </p>
-                        <p className="mt-2 text-xs text-gray-400">
-                          $24 - 46k/Year | &nbsp;&nbsp;&nbsp;| 📍 IN
-                        </p>
-                        <p className="mt-2 space-x-1 text-xs">
-                          <span className="px-2 py-1 text-white bg-blue-600 rounded">
-                            Urgent Requirement
-                          </span>
-                          <span className="px-2 py-1 text-blue-600 bg-blue-100 rounded">
-                            Client Payroll
-                          </span>
-                        </p>
-                      </td>
-                      <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <span className="p-2 text-xs font-bold text-green-600 bg-green-100 border-2 border-green-600 rounded-3xl">
-                          $30,000 Reward
-                        </span>
+                        <div className="flex items-center gap-x-3">
+                          <div className="size-12 bg-transparent rounded-full">
+                            <img
+                              className="w-full h-full rounded-full"
+                              src={company}
+                              alt={person.name}
+                            />
+                          </div>
+                          <div>
+                            <p className="text-base font-semibold text-blue-600">
+                              {person.title}
+                            </p>
+                            <p className="text-xs text-gray-400">
+                              Company 1 &bull; New York, NY &bull; $24 - 46k/Year
+                            </p>
+                          </div>
+                        </div>
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                         <span
                           className={clsx(
                             person.matched.toLowerCase() === "not yet matched"
-                              ? "text-red-600 bg-red-100 border-red-600"
-                              : "text-blue-600 bg-blue-100 border-blue-600",
-                            "p-2 text-xs font-bold border-2 rounded-3xl"
+                              ? "font-medium text-gray-400"
+                              : "text-blue-600 bg-blue-100 border-blue-600  border-2 rounded-3xl p-2",
+                            "font-bold"
                           )}
                         >
                           {person.matched}
                         </span>
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <span className="p-2 text-xs font-bold text-green-600 bg-green-100 border-2 border-green-600 rounded-3xl">
+                          ${person.reward}
+                        </span>
+                      </td>
+                      <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                         <Links />
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <Button className="flex items-center text-sm gap-x-2">
-                          <span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="size-5"
-                            >
-                              <path d="M12 12.5858L16.2426 16.8284L14.8284 18.2426L13 16.415V22H11V16.413L9.17157 18.2426L7.75736 16.8284L12 12.5858ZM12 2C15.5934 2 18.5544 4.70761 18.9541 8.19395C21.2858 8.83154 23 10.9656 23 13.5C23 16.3688 20.8036 18.7246 18.0006 18.9776L18 17C18 13.6863 15.3137 11 12 11C8.7616 11 6.12243 13.5656 6.00414 16.7751L6 17L6.00039 18.9776C3.19696 18.7252 1 16.3692 1 13.5C1 10.9656 2.71424 8.83154 5.04648 8.19411C5.44561 4.70761 8.40661 2 12 2Z"></path>
-                            </svg>
-                          </span>
-                          Upload
-                        </Button>
+                        <MainButton className="text-sm">
+                          Upload Resume
+                        </MainButton>
                       </td>
                     </tr>
                   ))}
