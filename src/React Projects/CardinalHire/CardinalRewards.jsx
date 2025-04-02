@@ -53,14 +53,14 @@ export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
       <section className="flex flex-col items-center">
-        <h1 className="text-4xl mb-3 text-red-500">Search for Employers</h1>
-        <p className="text-lg font-light mb-6">
+        <h1 className="mb-3 text-4xl text-red-500">Search for Employers</h1>
+        <p className="mb-6 text-lg font-light">
           Or upload a resume and see job matches!
         </p>
 
-        <div className="flex space-x-4 w-1/2">
-          <div className="relative flex-1 rounded-lg border border-dashed border-blue-300 bg-gray-50 p-6 flex flex-col items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
-            <div className="mb-2 flex items-center justify-center">
+        <div className="flex space-x-4 w-fit w1/2">
+          <div className="relative flex flex-col items-center justify-center flex-1 py-3 transition-colors border-2 border-blue-500 border-dashed cursor-pointer rounded-xl bg-gray-50 px-22 hover:bg-gray-100">
+            <div className="flex items-center justify-center">
               <div className="relative mr-10">
                 <img src={resume} alt="Resume" />
               </div>
@@ -75,8 +75,8 @@ export default function CardinalRewards() {
             />
           </div>
 
-          <div className="relative flex-1 rounded-lg border border-dashed border-blue-300 bg-gray-50 p-6 flex flex-col items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
-          <div className="mb-2 flex items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center flex-1 transition-colors border-2 border-blue-500 border-dashed cursor-pointer rounded-xl bg-gray-50 y-3 px-22 hover:bg-gray-100">
+            <div className="flex items-center justify-center">
               <div className="relative mr-10">
                 <img src={resumes} alt="Resumes" />
               </div>
@@ -96,7 +96,7 @@ export default function CardinalRewards() {
 
       <section className="mt-10 space-y-3">
         <div className="inline-flex gap-x-4">
-          <div className="w-64 flex">
+          <div className="flex w-64">
             <input
               type="text"
               className="block w-full rounded-l-md bg-white py-1.5 px-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
@@ -104,7 +104,7 @@ export default function CardinalRewards() {
             />
             <button
               type="button"
-              className="rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
+              className="px-3 py-2 text-sm font-semibold text-gray-900 bg-white cursor-pointer rounded-r-md outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@ export default function CardinalRewards() {
               </svg>
             </button>
           </div>
-          <div className="w-64 flex">
+          <div className="flex w-64">
             <input
               type="text"
               className="block w-full rounded-l-md bg-white py-1.5 px-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
@@ -130,7 +130,7 @@ export default function CardinalRewards() {
             />
             <button
               type="button"
-              className="rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
+              className="px-3 py-2 text-sm font-semibold text-gray-900 bg-white cursor-pointer rounded-r-md outline-1 -outline-offset-1 outline-gray-300 hover:bg-gray-50 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -293,8 +293,8 @@ export default function CardinalRewards() {
 
       <section className="flow-root mt-8">
         <div className="overflow-x-auto">
-          <div className="inline-block min-w-full py-2 align-middle px-1">
-            <div className="overflow-hidden shadow-sm ring-1 ring-black/5 rounded-lg">
+          <div className="inline-block min-w-full px-1 py-2 align-middle">
+            <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-black/5">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-white">
                   <tr>
@@ -335,7 +335,7 @@ export default function CardinalRewards() {
                     <tr key={i} className="even:bg-gray-50">
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
                         <div className="flex items-center gap-x-3">
-                          <div className="size-12 bg-transparent rounded-full">
+                          <div className="bg-transparent rounded-full size-12">
                             <img
                               className="w-full h-full rounded-full"
                               src={company}
@@ -347,7 +347,8 @@ export default function CardinalRewards() {
                               {person.title}
                             </p>
                             <p className="text-xs text-gray-400">
-                              Company 1 &bull; New York, NY &bull; $24 - 46k/Year
+                              Company 1 &bull; New York, NY &bull; $24 -
+                              46k/Year
                             </p>
                           </div>
                         </div>
@@ -373,7 +374,7 @@ export default function CardinalRewards() {
                         <Links />
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <MainButton className="text-sm">
+                        <MainButton className="text-xs !font-medium">
                           Upload Resume
                         </MainButton>
                       </td>
@@ -392,7 +393,7 @@ export default function CardinalRewards() {
 function Links() {
   return (
     <div className="flex space-x-3">
-      <button className="p-1 border rounded-full cursor-pointer text-blue-500 hover:text-blue-700">
+      <button className="p-1 text-blue-500 border rounded-full cursor-pointer hover:text-blue-700">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -403,7 +404,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer text-blue-700 hover:text-blue-900">
+      <button className="p-1 text-blue-700 border rounded-full cursor-pointer hover:text-blue-900">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -414,7 +415,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer text-blue-600 hover:text-blue-800">
+      <button className="p-1 text-blue-600 border rounded-full cursor-pointer hover:text-blue-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -425,7 +426,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer text-black hover:text-gray-700">
+      <button className="p-1 text-black border rounded-full cursor-pointer hover:text-gray-700">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -436,7 +437,7 @@ function Links() {
         </svg>
       </button>
 
-      <button className="p-1 border rounded-full cursor-pointer text-blue-400 hover:text-blue-500">
+      <button className="p-1 text-blue-400 border rounded-full cursor-pointer hover:text-blue-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -444,6 +445,27 @@ function Links() {
           className="size-5"
         >
           <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM12.0606 11.6829L5.64722 6.2377L4.35278 7.7623L12.0731 14.3171L19.6544 7.75616L18.3456 6.24384L12.0606 11.6829Z"></path>
+        </svg>
+      </button>
+      <button className="p-1 text-pink-600 border rounded-full cursor-pointer hover:text-pink-700">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="size-5"
+        >
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+        </svg>
+      </button>
+
+      <button className="p-1 text-black border rounded-full cursor-pointer hover:text-gray-700">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="size-5"
+        >
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
         </svg>
       </button>
     </div>
