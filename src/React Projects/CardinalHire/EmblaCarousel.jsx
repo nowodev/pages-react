@@ -5,7 +5,6 @@ import {
   usePrevNextButtons,
 } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
-import resume from "./resume-lg.png";
 
 function EmblaCarousel(props) {
   const { slides, options } = props;
@@ -45,7 +44,7 @@ function EmblaCarousel(props) {
 
 function Slide({ number, slide }) {
   return (
-    <div className="flex items-center p-16 bg-blue-100 border shadow-inner select-none rounded-3xl justifybetween gap-x-30">
+    <div className="flex items-center p-16 bg-blue-100 shadow-inner select-none rounded-3xl gap-x-30">
       <img src={slide.image} alt="Resume" className="w-auto h-44" />
       <div className="flex flex-col max-w-2xl gap-y-4">
         <div className="flex items-center space-x-3">

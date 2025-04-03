@@ -88,14 +88,14 @@ export default function CardinalHowItWorks() {
 
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />
 
-        <section className="px-20 text-center">
+        <section className="px-20 mx-auto text-center max-w-fit">
           <h1 className="mb-3 text-5xl font-semibold text-red-500">Tools for everyone</h1>
           <p className="mb-6 text-xl">
             No matter if you’re a candidate, an employer, or a recruiter, <br />
             CardinalTalent has your back!
           </p>
 
-          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+          <div className="grid grid-cols-2 grid-rows-2 gap-8">
             <div className="flex flex-col items-center justify-between row-span-2 p-4 space-y-2 bg-blue-100 rounded-lg shadow-md">
               <div>
                 <p className="-mb-20 text-2xl">
