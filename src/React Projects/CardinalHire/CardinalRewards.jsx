@@ -53,8 +53,8 @@ export default function CardinalRewards() {
   return (
     <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
       <section className="flex flex-col items-center">
-        <h1 className="mb-3 text-4xl text-red-500">Search for Employers</h1>
-        <p className="mb-6 text-lg font-light">
+        <h1 className="mb-3 text-5xl font-medium text-red-500">Search for Employers</h1>
+        <p className="mb-6 text-xl font-light">
           Or upload a resume and see job matches!
         </p>
 
