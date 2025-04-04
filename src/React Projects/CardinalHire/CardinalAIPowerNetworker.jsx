@@ -2,7 +2,6 @@ import cardin from "./cardin.png";
 import circle from "./circle.png";
 import chat from "./chat.png";
 import { classNames } from "../../functions";
-import { useState } from "react";
 import { MainButton } from "./Button";
 import FolksCarousel from "./FolksCarousel";
 import dan from "./dan.png";
@@ -39,13 +38,6 @@ const SLIDES = [
 ];
 
 export default function CardinalAIPowerNetworker() {
-  const [fileName, setFileName] = useState("");
-
-  const handleFileInputChange = (event) => {
-    const fileName = event.target.files[0].name;
-    setFileName(fileName);
-  };
-
   return (
     <div className="bg-gray-50">
       <div className="container min-h-screen px-4 py-10 mx-auto sm:px-6 lg:px-8 space-y-9">
@@ -102,18 +94,11 @@ export default function CardinalAIPowerNetworker() {
 
                     <div>
                       <p className="text-xs">Upload your Resume</p>
-                      <div className="flex items-center mt-1">
-                        <button className="bg-white text-black px-2 py-0.5 rounded-md">
-                          Choose file
-                        </button>
+                      <div className="mt-1">
                         <input
                           type="file"
-                          className="hidden"
-                          onChange={handleFileInputChange}
+                          class="block w-full text-sm file:mr-4 file:rounded file:border-0 file:bg-white file:py-0.5 file:px-2 file:text-sm file:text-black"
                         />
-                        <span className="text-white ml-3">
-                          {fileName.length > 0 ? fileName : "No file selected"}
-                        </span>
                       </div>
                     </div>
                   </div>
