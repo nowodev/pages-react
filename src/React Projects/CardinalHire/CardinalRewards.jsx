@@ -1,10 +1,9 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { MainButton, MiniButton } from "./Button";
 import clsx from "clsx";
-import resume from "./resume.png";
-import cloud from "./cloud.png";
-import resumes from "./resumes.png";
-import company from "./company.png";
+import resume from "./assets/resume.png";
+import cloud from "./assets/cloud.png";
+import resumes from "./assets/resumes.png";
+import company from "./assets/company.png";
 
 const people = [
   {

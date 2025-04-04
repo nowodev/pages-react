@@ -1,6 +1,6 @@
 import { MainButton } from "./Button";
 import clsx from "clsx";
-import company from "./company.png";
+import company from "./assets/company.png";
 
 const people = [
   {

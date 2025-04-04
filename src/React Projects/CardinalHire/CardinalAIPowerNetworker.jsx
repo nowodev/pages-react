@@ -1,12 +1,12 @@
-import cardin from "./cardin.png";
-import circle from "./circle.png";
-import chat from "./chat.png";
-import { classNames } from "../../functions";
+import cardin from "./assets/cardin.png";
+import circle from "./assets/circle.png";
+import chat from "./assets/chat.png";
+import clsx from "clsx";
 import { MainButton } from "./Button";
 import FolksCarousel from "./FolksCarousel";
-import dan from "./dan.png";
-import susan from "./susan.png";
-import han from "./han.png";
+import dan from "./assets/dan.png";
+import susan from "./assets/susan.png";
+import han from "./assets/han.png";
 
 const OPTIONS = { dragFree: true, loop: true };
 const SLIDES = [
@@ -197,7 +197,7 @@ function CustomInput({ type = "text", name, id, placeholder, className }) {
       type={type}
       name={name}
       id={id}
-      className={classNames(
+      className={clsx(
         className,
         "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
       )}

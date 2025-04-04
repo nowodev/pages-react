@@ -1,15 +1,15 @@
-import bgImage from "./how-it-works-bg.png";
-import cardin from "./cardin.png";
-import facebook from "./facebook.png";
-import instagram from "./instagram.png";
-import linkedin from "./linkedin.png";
-import union from "./union.png";
+import bgImage from "./assets/how-it-works-bg.png";
+import cardin from "./assets/cardin.png";
+import facebook from "./assets/facebook.png";
+import instagram from "./assets/instagram.png";
+import linkedin from "./assets/linkedin.png";
+import union from "./assets/union.png";
 import EmblaCarousel from "./EmblaCarousel";
-import cardinPhone from "./cardin-phone.png";
-import mail from "./email_icon.png";
-import resume from "./resume-lg.png";
-import commentBox from "./comment-box.png";
-import applicationChart from "./applicatoin-chart.png";
+import cardinPhone from "./assets/cardin-phone.png";
+import mail from "./assets/email_icon.png";
+import resume from "./assets/resume-lg.png";
+import commentBox from "./assets/comment-box.png";
+import applicationChart from "./assets/applicatoin-chart.png";
 
 const OPTIONS = { align: "start", loop: false };
 const SLIDES = [

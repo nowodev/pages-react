@@ -1,4 +1,4 @@
-import party from "./party.png";
+import party from "./assets/party.png";
 
 const people = [
   {
