@@ -123,6 +123,7 @@ function ActionInput({
         onChange={onChange}
         className="w-1/2 px-2 py-2 border rounded-md"
         placeholder={placeholder}
+        disabled={disabled}
       />
       <ActionButton
         onClick={onAction}
@@ -144,7 +145,7 @@ function BankApp() {
     <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gradient-to-br from-blue-100 to-purple-200">
       <div className="w-full max-w-md px-8 py-10 bg-white shadow-lg rounded-2xl">
         <h1 className="mb-6 text-3xl font-bold text-center text-blue-700">
-          useReducer Bank Account
+          Bank Account
         </h1>
         <div className="flex flex-col gap-2 mb-6">
           <p className="text-lg font-medium text-gray-700">
@@ -155,12 +156,12 @@ function BankApp() {
           </p>
         </div>
         <div className="flex justify-end mb-4">
-          <button
+          <ActionButton
             onClick={() => setShowCustom((v) => !v)}
-            className="px-3 py-1 text-sm font-medium text-blue-700 transition border border-blue-400 rounded bg-blue-50 hover:bg-blue-100"
+            className="outline outline-blue-500 !text-blue-500 hover:bg-blue-500 hover:!text-white transition"
           >
             {showCustom ? "Show Fixed Actions" : "Show Custom Inputs"}
-          </button>
+          </ActionButton>
         </div>
         <div className="flex flex-col gap-3">
           <ActionButton
