@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -22,6 +22,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   isActive: false,
+  amount: 0,
 };
 
 function reducer(state, action) {
@@ -35,7 +36,12 @@ function reducer(state, action) {
         ...state,
         balance: 500,
         isActive: true,
-        loan: 0,
+      };
+    }
+    case "setAmount": {
+      return {
+        ...state,
+        amount: action.payload,
       };
     }
     case "deposit": {
@@ -43,6 +49,7 @@ function reducer(state, action) {
       return {
         ...state,
         balance: state.balance + action.payload,
+        amount: 0,
       };
     }
     case "withdraw": {
@@ -50,6 +57,7 @@ function reducer(state, action) {
       return {
         ...state,
         balance: state.balance - action.payload,
+        amount: 0,
       };
     }
     case "requestLoan": {
@@ -59,6 +67,7 @@ function reducer(state, action) {
         ...state,
         balance: state.balance + action.payload,
         loan: action.payload,
+        amount: 0,
       };
     }
     case "payLoan": {
@@ -68,6 +77,7 @@ function reducer(state, action) {
         ...state,
         balance: state.balance - state.loan,
         loan: 0,
+        amount: 0,
       };
     }
     case "closeAccount": {
@@ -96,14 +106,44 @@ function ActionButton({ onClick, disabled, className, children }) {
   );
 }
 
+function ActionInput({
+  value,
+  onChange,
+  onAction,
+  actionLabel,
+  actionClass,
+  placeholder = "Enter amount",
+  disabled = false,
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <input
+        type="number"
+        value={value}
+        onChange={onChange}
+        className="w-1/2 px-2 py-2 border rounded-md"
+        placeholder={placeholder}
+      />
+      <ActionButton
+        onClick={onAction}
+        disabled={disabled}
+        className={`w-1/2 ${actionClass}`}
+      >
+        {actionLabel}
+      </ActionButton>
+    </div>
+  );
+}
+
 function BankApp() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { balance, loan, isActive } = state;
+  const { balance, loan, isActive, amount } = state;
+  const [showCustom, setShowCustom] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200 font-sans">
-      <div className="bg-white rounded-2xl shadow-lg px-8 py-10 w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
+    <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gradient-to-br from-blue-100 to-purple-200">
+      <div className="w-full max-w-md px-8 py-10 bg-white shadow-lg rounded-2xl">
+        <h1 className="mb-6 text-3xl font-bold text-center text-blue-700">
           useReducer Bank Account
         </h1>
         <div className="flex flex-col gap-2 mb-6">
@@ -114,6 +154,14 @@ function BankApp() {
             Loan: <span className="font-mono text-red-500">{loan}</span>
           </p>
         </div>
+        <div className="flex justify-end mb-4">
+          <button
+            onClick={() => setShowCustom((v) => !v)}
+            className="px-3 py-1 text-sm font-medium text-blue-700 transition border border-blue-400 rounded bg-blue-50 hover:bg-blue-100"
+          >
+            {showCustom ? "Show Fixed Actions" : "Show Custom Inputs"}
+          </button>
+        </div>
         <div className="flex flex-col gap-3">
           <ActionButton
             onClick={() => dispatch({ type: "openAccount" })}
@@ -122,27 +170,76 @@ function BankApp() {
           >
             Open account
           </ActionButton>
-          <ActionButton
-            onClick={() => dispatch({ type: "deposit", payload: 150 })}
-            disabled={!isActive}
-            className="bg-blue-500 hover:bg-blue-600"
-          >
-            Deposit 150
-          </ActionButton>
-          <ActionButton
-            onClick={() => dispatch({ type: "withdraw", payload: 50 })}
-            disabled={!isActive}
-            className="bg-yellow-500 hover:bg-yellow-600"
-          >
-            Withdraw 50
-          </ActionButton>
-          <ActionButton
-            onClick={() => dispatch({ type: "requestLoan", payload: 5000 })}
-            disabled={!isActive}
-            className="bg-purple-500 hover:bg-purple-600"
-          >
-            Request a loan of 5000
-          </ActionButton>
+          {!showCustom ? (
+            <>
+              <ActionButton
+                onClick={() => dispatch({ type: "deposit", payload: 150 })}
+                disabled={!isActive}
+                className="bg-blue-500 hover:bg-blue-600"
+              >
+                Deposit 150
+              </ActionButton>
+              <ActionButton
+                onClick={() => dispatch({ type: "withdraw", payload: 50 })}
+                disabled={!isActive}
+                className="bg-yellow-500 hover:bg-yellow-600"
+              >
+                Withdraw 50
+              </ActionButton>
+              <ActionButton
+                onClick={() => dispatch({ type: "requestLoan", payload: 5000 })}
+                disabled={!isActive}
+                className="bg-purple-500 hover:bg-purple-600"
+              >
+                Request a loan of 5000
+              </ActionButton>
+            </>
+          ) : (
+            <>
+              <ActionInput
+                value={amount}
+                onChange={(e) =>
+                  dispatch({
+                    type: "setAmount",
+                    payload: Number(e.target.value),
+                  })
+                }
+                onAction={() => dispatch({ type: "deposit", payload: amount })}
+                actionLabel={`Deposit ${amount}`}
+                actionClass="bg-green-500 hover:bg-green-600"
+                disabled={!isActive}
+              />
+              <ActionInput
+                value={amount}
+                onChange={(e) =>
+                  dispatch({
+                    type: "setAmount",
+                    payload: Number(e.target.value),
+                  })
+                }
+                onAction={() => dispatch({ type: "withdraw", payload: amount })}
+                actionLabel={`Withdraw ${amount}`}
+                actionClass="bg-yellow-500 hover:bg-yellow-600"
+                disabled={!isActive}
+              />
+              <ActionInput
+                value={amount}
+                onChange={(e) =>
+                  dispatch({
+                    type: "setAmount",
+                    payload: Number(e.target.value),
+                  })
+                }
+                onAction={() =>
+                  dispatch({ type: "requestLoan", payload: amount })
+                }
+                actionLabel={`Request loan ${amount}`}
+                actionClass="bg-purple-500 hover:bg-purple-600"
+                disabled={!isActive}
+                placeholder="Loan amount"
+              />
+            </>
+          )}
           <ActionButton
             onClick={() => dispatch({ type: "payLoan" })}
             disabled={!isActive}
