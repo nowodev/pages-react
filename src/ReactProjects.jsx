@@ -1,10 +1,6 @@
 import {
-  AcademicCapIcon,
   BanknotesIcon,
   CalculatorIcon,
-  CheckBadgeIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import LayoutGrid from "./components/LayoutGrid";
@@ -13,18 +9,10 @@ const actions = [
   {
     title: "Birthdays",
     href: "birthdays",
-    icon: ClockIcon,
+    icon: UsersIcon,
     iconForeground: "text-teal-700",
     iconBackground: "bg-teal-50",
     description: "A list of birthday data with a button to empty the list",
-  },
-  {
-    title: "Cardinal Talent",
-    href: "cardinaltalent",
-    icon: UsersIcon,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-    description: "A revamp of the Cardinal Talent website.",
   },
   {
     title: "Calculator",
@@ -35,6 +23,63 @@ const actions = [
     description:
       "A basic calculator that stores calculated history that is accessible at any time",
   },
+  {
+    title: "Bank App",
+    href: "bank-app",
+    icon: BanknotesIcon,
+    iconForeground: "text-yellow-700",
+    iconBackground: "bg-yellow-50",
+    description:
+      "A bank app that allows users to deposit, withdraw, and request a loan (utilizing useReducer).",
+  },
+  // {
+  //   title: "Cardinal Talent",
+  //   href: "cardinaltalent",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
+  // {
+  //   title: "Cardinal Rewards Page",
+  //   href: "cardinalrewardspage",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
+  // {
+  //   title: "Cardinal Rewards",
+  //   href: "cardinalrewards",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
+  // {
+  //   title: "Cardinal Leaderboard",
+  //   href: "cardinalleaderboard",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
+  // {
+  //   title: "Cardinal How It Works",
+  //   href: "cardinalhowitworks",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
+  // {
+  //   title: "Cardinal AI Power Networker",
+  //   href: "cardinalaipowernetworker",
+  //   icon: UsersIcon,
+  //   iconForeground: "text-purple-700",
+  //   iconBackground: "bg-purple-50",
+  //   description: "A revamp of the Cardinal Talent website.",
+  // },
   // {
   //   title: "Payroll",
   //   href: "#",

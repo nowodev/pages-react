@@ -18,6 +18,7 @@ import CardinalLeaderboard from "./React Projects/CardinalHire/CardinalLeaderboa
 import CardinalHowItWorks from "./React Projects/CardinalHire/CardinalHowItWorks.jsx";
 import CardinalAIPowerNetworker from "./React Projects/CardinalHire/CardinalAIPowerNetworker.jsx";
 import CardinalRewardsPage from "./React Projects/CardinalHire/CardinalRewardsPage.jsx";
+import BankApp from "./React Projects/BankApp.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -44,13 +45,14 @@ createRoot(document.getElementById("root")).render(
 
           <Route path="react-projects">
             <Route path="birthdays" element={<Birthdays />} />
+            <Route path="calculator" element={<Calculator />} />
+            <Route path="bank-app" element={<BankApp />} />
             <Route path="cardinaltalent" element={<CardinalTalent />} />
             <Route path="cardinalrewardspage" element={<CardinalRewardsPage />} />
             <Route path="cardinalrewards" element={<CardinalRewards />} />
             <Route path="cardinalleaderboard" element={<CardinalLeaderboard />} />
             <Route path="cardinalhowitworks" element={<CardinalHowItWorks />} />
             <Route path="cardinalaipowernetworker" element={<CardinalAIPowerNetworker />} />
-            <Route path="calculator" element={<Calculator />} />
           </Route>
         </Route>
       </Routes>
