@@ -82,7 +82,12 @@ function reducer(state, action) {
     }
     case "closeAccount": {
       // Only close account if balance and loan are zero
-      if (state.balance !== 0 || state.loan > 0) return state;
+      if (state.balance !== 0 || state.loan > 0) {
+        alert(
+          "You must pay off your loan and withdraw all your balance before closing the account"
+        );
+        return state;
+      }
       return { ...initialState };
     }
     default:
