@@ -21,6 +21,7 @@ import CardinalRewardsPage from "./React Projects/CardinalHire/CardinalRewardsPa
 import BankApp from "./React Projects/BankApp.jsx";
 import Countries from "./Frontend Mentor/Countries/Index.jsx";
 import Country from "./Frontend Mentor/Countries/Country.jsx";
+import Layout from "./Frontend Mentor/Countries/components/Layout.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -43,8 +44,10 @@ createRoot(document.getElementById("root")).render(
               path="mortgage-repayment-calculator"
               element={<MortgageRepaymentCalculator />}
             />
-            <Route path="countries" element={<Countries />} />
-            <Route path="countries/:country" element={<Country />} />
+            <Route element={<Layout />}>
+              <Route path="countries" element={<Countries />} />
+              <Route path="countries/:country" element={<Country />} />
+            </Route>
           </Route>
 
           <Route path="react-projects">
@@ -52,11 +55,20 @@ createRoot(document.getElementById("root")).render(
             <Route path="calculator" element={<Calculator />} />
             <Route path="bank-app" element={<BankApp />} />
             <Route path="cardinaltalent" element={<CardinalTalent />} />
-            <Route path="cardinalrewardspage" element={<CardinalRewardsPage />} />
+            <Route
+              path="cardinalrewardspage"
+              element={<CardinalRewardsPage />}
+            />
             <Route path="cardinalrewards" element={<CardinalRewards />} />
-            <Route path="cardinalleaderboard" element={<CardinalLeaderboard />} />
+            <Route
+              path="cardinalleaderboard"
+              element={<CardinalLeaderboard />}
+            />
             <Route path="cardinalhowitworks" element={<CardinalHowItWorks />} />
-            <Route path="cardinalaipowernetworker" element={<CardinalAIPowerNetworker />} />
+            <Route
+              path="cardinalaipowernetworker"
+              element={<CardinalAIPowerNetworker />}
+            />
           </Route>
         </Route>
       </Routes>

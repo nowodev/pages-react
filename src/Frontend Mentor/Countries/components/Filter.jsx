@@ -27,7 +27,7 @@ function Filter({ regions, onFilter }) {
         >
           {selected}
           <ChevronDownIcon
-            className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"
+            className="group pointer-events-none absolute top-4 right-3 size-4 fill-white/60"
             aria-hidden="true"
           />
         </ListboxButton>
@@ -35,7 +35,7 @@ function Filter({ regions, onFilter }) {
           anchor="bottom"
           transition
           className={clsx(
-            "w-[var(--button-width)] rounded-xl border border-white/5 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
+            "w-[var(--button-width)] rounded-lg border border-gray-200 shadow-lg bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
             "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
           )}
         >
