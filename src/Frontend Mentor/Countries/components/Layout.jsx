@@ -5,8 +5,8 @@ function Layout() {
   return (
     <div>
       <Nav />
-      <div className="bggray-900 min-h-screen bg-gray-100">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-gray-100 dark:bg-slate-700">
+        <div className="mx-auto max-w-7xl">
           <Outlet />
         </div>
       </div>

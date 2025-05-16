@@ -52,29 +52,30 @@ function Countries() {
   };
 
   const handleFilter = (region) => {
-    if (region === "Filter by Region") return setFilteredCountries(countries);
+    setFilteredCountries(countries);
+    if (region === "Filter by Region") return;
     setFilteredCountries((countries) =>
       countries.filter((country) => country.region === region)
     );
   };
 
   return (
-    <main className="bg-gray-10 px-4 sm:px-6 lg:px-8 py-12">
-      <section className="flex items-center justify-between flex-row">
-        <div className="relative w-2/5">
+    <main className="px-4 py-12 bg-gray-10 sm:px-6 lg:px-8">
+      <section className="flex flex-col items-center justify-between sm:flex-row">
+        <div className="relative w-full sm:w-2/5">
           <input
             type="text"
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search for a country..."
-            className="w-full rounded-lg bg-white border border-gray-200 shadow py-3 pl-12 pr-3"
+            className="w-full py-3 pl-12 pr-3 bg-white border border-gray-200 rounded-lg shadow outline-none dark:bg-slate-600 dark:border-0 dark:text-white placeholder:text-gray-400"
           />
-          <span className="absolute left-0 top-1/4 pl-4">
-            <MagnifyingGlassIcon className="size-6 text-gray-400" />
+          <span className="absolute left-0 pl-4 top-1/4">
+            <MagnifyingGlassIcon className="text-gray-400 size-6 dark:text-white" />
           </span>
         </div>
 
-        <div className="w-1/5">
+        <div className="self-end mt-2 lg:w-1/6 lg:mt-0">
           <Filter regions={regions} onFilter={handleFilter} />
         </div>
       </section>
@@ -82,12 +83,12 @@ function Countries() {
       {isLoading && <Loader />}
 
       <section className="mt-10">
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 lg:grid-cols-4">
           {filteredCountries.map((country) => (
             <Link
               key={country.cca3}
               to={`${country.name.common}?code=${country.cca3}`}
-              className="hover:scale-105 transition-all hover:shadow-xl duration-500"
+              className="transition-all duration-500 outline-none hover:scale-105 hover:shadow-xl"
             >
               <CountryList
                 key={country.name}

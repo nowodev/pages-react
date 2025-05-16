@@ -47,25 +47,25 @@ function Country() {
       {isLoading ? (
         <Loader />
       ) : (
-        <section className="px-4 sm:px-6 lg:px-8 py-12">
+        <section className="px-4 py-12 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-x-2 bg-white border border-gray-300 px-6 py-1.5 rounded-md shadow ring-2 ring-gray-200 cursor-pointer hover:scale-110 duration-500"
+            className="inline-flex dark:bg-slate-600 dark:text-white items-center gap-x-2 bg-white px-6 py-1.5 rounded-md drop-shadow-md cursor-pointer hover:scale-110 duration-500"
           >
             <ArrowLongLeftIcon className="size-6" />
             Back
           </button>
 
-          <div className="mt-10 grid grid-cols-2 gap-x-16">
+          <div className="grid grid-cols-1 mt-10 lg:grid-cols-2 gap-x-16 dark:text-white">
             <img
-              className="aspect-3/2 w-full object-cover rounded-md"
+              className="object-cover w-full rounded-md aspect-3/2"
               src={flags?.svg}
               alt={flags?.alt}
             />
 
-            <div className="flex flex-col justify-center">
-              <h1 className="font-bold text-3xl">{name?.common}</h1>
-              <div className="grid grid-cols-2 py-10">
+            <div className="flex flex-col justify-center mt-10 tracking-wide lg:mt-0">
+              <h1 className="text-3xl font-bold">{name?.common}</h1>
+              <div className="grid grid-cols-1 py-10 lg:grid-cols-2">
                 <div className="space-y-3">
                   <p>
                     <span className="font-semibold">Official Name:</span>{" "}
@@ -87,13 +87,13 @@ function Country() {
                   </p>
                 </div>
 
-                <div className="space-y-3">
+                <div className="mt-10 space-y-3 lg:mt-0">
                   <p>
                     <span className="font-semibold">Top Level Domain:</span>{" "}
                     {tld}
                   </p>
                   <p>
-                    <span className="font-semibold">Currencies:</span>{" "}
+                    <span className="font-bold">Currencies:</span>{" "}
                     {Object.values(currencies)
                       .map(({ name }) => name)
                       .join(", ")}
@@ -105,15 +105,15 @@ function Country() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-3">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-x-3">
                 <p className="font-semibold">Border Countries:</p>
-                <div className="space-x-2">
+                <div className="flex flex-wrap gap-2 mt-5 lg:mt-">
                   {borders ? (
                     Object.values(borders).map((border) => {
                       return (
                         <span
                           key={border}
-                          className="px-5 border py-1 border-gray-300 shadow rounded text-xs"
+                          className="px-5 py-1 text-xs bg-white rounded drop-shadow-md dark:bg-slate-600"
                         >
                           {border}
                         </span>

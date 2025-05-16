@@ -36,10 +36,10 @@ const actions = [
   {
     title: "Countries Facts",
     href: "countries",
-    icon: BanknotesIcon,
+    icon: ClockIcon,
     iconForeground: "text-amber-700",
     iconBackground: "bg-amber-50",
-    description: "An advice generator app using the Advice Slip API.",
+    description: "Countries facts coding challenge.",
   },
 ];
 
