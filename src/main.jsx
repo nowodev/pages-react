@@ -19,6 +19,8 @@ import CardinalHowItWorks from "./React Projects/CardinalHire/CardinalHowItWorks
 import CardinalAIPowerNetworker from "./React Projects/CardinalHire/CardinalAIPowerNetworker.jsx";
 import CardinalRewardsPage from "./React Projects/CardinalHire/CardinalRewardsPage.jsx";
 import BankApp from "./React Projects/BankApp.jsx";
+import Countries from "./Frontend Mentor/Countries/Index.jsx";
+import Country from "./Frontend Mentor/Countries/Country.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -41,6 +43,8 @@ createRoot(document.getElementById("root")).render(
               path="mortgage-repayment-calculator"
               element={<MortgageRepaymentCalculator />}
             />
+            <Route path="countries" element={<Countries />} />
+            <Route path="countries/:country" element={<Country />} />
           </Route>
 
           <Route path="react-projects">

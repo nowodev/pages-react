@@ -33,6 +33,14 @@ const actions = [
     iconBackground: "bg-amber-50",
     description: "An advice generator app using the Advice Slip API.",
   },
+  {
+    title: "Countries Facts",
+    href: "countries",
+    icon: BanknotesIcon,
+    iconForeground: "text-amber-700",
+    iconBackground: "bg-amber-50",
+    description: "An advice generator app using the Advice Slip API.",
+  },
 ];
 
 function FrontendMentor() {
