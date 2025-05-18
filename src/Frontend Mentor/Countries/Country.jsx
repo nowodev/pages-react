@@ -50,7 +50,7 @@ function Country() {
         <section className="px-4 py-12 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex dark:bg-slate-600 dark:text-white items-center gap-x-2 bg-white px-6 py-1.5 rounded-md drop-shadow-md cursor-pointer hover:scale-110 duration-500"
+            className="inline-flex dark:bg-slate-600 dark:text-white items-center gap-x-2 bg-white px-6 py-1.5 rounded-md drop-shadow-md/40 dropshadow-cyan-500 cursor-pointer hover:scale-110 duration-500"
           >
             <ArrowLongLeftIcon className="size-6" />
             Back

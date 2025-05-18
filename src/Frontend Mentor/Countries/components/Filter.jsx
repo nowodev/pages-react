@@ -21,8 +21,8 @@ function Filter({ regions, onFilter }) {
       <Listbox value={selected} onChange={handleFilter}>
         <ListboxButton
           className={clsx(
-            "relative block w-full bg-white dark:bg-slate-600 dark:border-0 dark:text-white cursor-pointer shadow rounded-lg py-3 pr-8 pl-3 text-left text-sm/6 border border-gray-200",
-            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+            "relative block w-full bg-white dark:bg-slate-600 dark:text-white cursor-pointer shadow rounded-lg py-3 pr-8 pl-3 text-left text-sm/6 drop-shadow-lg/40",
+            "focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
           )}
         >
           {selected}
@@ -35,15 +35,15 @@ function Filter({ regions, onFilter }) {
           anchor="bottom"
           transition
           className={clsx(
-            "w-[var(--button-width)] mt-0.5 rounded-lg border dark:bg-slate-600 dark:text-white dark:border-0 border-gray-200 shadow-lg bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
-            "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
+            "w-(--button-width) mt-0.5 rounded-lg dark:bg-slate-600 dark:text-white drop-shadow-lg/30 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
+            "transition duration-100 ease-in data-leave:data-closed:opacity-0"
           )}
         >
           {regions.map((region) => (
             <ListboxOption
               key={region}
               value={region}
-              className="group flex items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-gray-100 dark:data-[focus]:bg-gray-700 cursor-pointer"
+              className="group flex items-center gap-2 rounded-lg py-1.5 px-3 select-none data-focus:bg-gray-100 dark:data-focus:bg-gray-700 cursor-pointer"
             >
               <div className="text-sm/6">{region}</div>
             </ListboxOption>

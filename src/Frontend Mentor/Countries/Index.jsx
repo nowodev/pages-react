@@ -68,7 +68,7 @@ function Countries() {
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search for a country..."
-            className="w-full py-3 pl-12 pr-3 bg-white border border-gray-200 rounded-lg shadow outline-none dark:bg-slate-600 dark:border-0 dark:text-white placeholder:text-gray-400"
+            className="w-full py-3 pl-12 pr-3 drop-shadow-lg/30 bg-white rounded-lg outline-none dark:bg-slate-600  dark:text-white placeholder:text-gray-400"
           />
           <span className="absolute left-0 pl-4 top-1/4">
             <MagnifyingGlassIcon className="text-gray-400 size-6 dark:text-white" />
