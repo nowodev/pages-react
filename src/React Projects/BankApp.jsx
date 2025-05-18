@@ -147,7 +147,7 @@ function BankApp() {
   const [showCustom, setShowCustom] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-gradient-to-br from-blue-100 to-purple-200">
+    <div className="flex flex-col items-center justify-center min-h-screen font-sans bg-linear-to-br from-blue-100 to-purple-200">
       <div className="w-full max-w-md px-8 py-10 bg-white shadow-lg rounded-2xl">
         <h1 className="mb-6 text-3xl font-bold text-center text-blue-700">
           Bank Account
@@ -163,7 +163,7 @@ function BankApp() {
         <div className="flex justify-end mb-4">
           <ActionButton
             onClick={() => setShowCustom((v) => !v)}
-            className="outline outline-blue-500 !text-blue-500 hover:bg-blue-500 hover:!text-white transition"
+            className="outline outline-blue-500 text-blue-500! hover:bg-blue-500 hover:text-white! transition"
           >
             {showCustom ? "Show Fixed Actions" : "Show Custom Inputs"}
           </ActionButton>

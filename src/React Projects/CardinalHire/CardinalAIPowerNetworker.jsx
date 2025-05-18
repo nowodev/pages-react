@@ -106,7 +106,7 @@ export default function CardinalAIPowerNetworker() {
                   <div className="flex justify-center mt-5">
                     <MainButton
                       text="Submit"
-                      className="w-1/2 border-none !font-light"
+                      className="w-1/2 border-none font-light!"
                     />
                   </div>
                 </form>

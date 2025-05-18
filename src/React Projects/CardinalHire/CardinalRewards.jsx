@@ -264,7 +264,7 @@ export default function CardinalRewards() {
             </span>
             Salary Range
           </MiniButton>
-          <MiniButton className="inline-flex gap-x-1 !border-blue-300 hover:bg-transparent !text-blue-500">
+          <MiniButton className="inline-flex gap-x-1 border-blue-300! hover:bg-transparent text-blue-500!">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -373,7 +373,7 @@ export default function CardinalRewards() {
                         <Links />
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <MainButton className="text-xs !font-medium">
+                        <MainButton className="text-xs font-medium!">
                           Upload Resume
                         </MainButton>
                       </td>

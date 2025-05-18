@@ -22,7 +22,7 @@ export default function Categories({ categories, onCategory }) {
         <ListboxButton
           className={clsx(
             "relative block w-full bg-white cursor-pointer rounded-md py-1.5 pr-8 pl-3 text-left text-sm/6 border border-amber-500",
-            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+            "focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
           )}
         >
           {selected}
@@ -35,15 +35,15 @@ export default function Categories({ categories, onCategory }) {
           anchor="bottom"
           transition
           className={clsx(
-            "w-[var(--button-width)] rounded-xl border border-white/5 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
-            "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
+            "w-(--button-width) rounded-xl border border-white/5 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
+            "transition duration-100 ease-in data-leave:data-closed:opacity-0"
           )}
         >
           {categories.map((category) => (
             <ListboxOption
               key={category}
               value={category}
-              className="group flex items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-amber-100 cursor-pointer"
+              className="group flex items-center gap-2 rounded-lg py-1.5 px-3 select-none data-focus:bg-amber-100 cursor-pointer"
             >
               <div className="text-sm/6">{category}</div>
             </ListboxOption>

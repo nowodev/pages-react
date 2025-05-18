@@ -30,7 +30,7 @@ const FolksCarousel = (props) => {
         <div className="flex touch-pan-y touch-pinch-zoom -ml-[calc(var(--slide-spacing))]">
           {slides.map((slide, index) => (
             <div
-              className="transform translate-x-0 py-1 translate-y-0 translate-z-0 flex-none w-[var(--slide-size)] min-w-0 pl-[var(--slide-spacing)]"
+              className="transform translate-x-0 py-1 translate-y-0 translate-z-0 flex-none w-(--slide-size) min-w-0 pl-(--slide-spacing)"
               key={index}
             >
               <div className="p-4 border border-gray-200 rounded-lg shadow">

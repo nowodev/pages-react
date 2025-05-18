@@ -144,7 +144,7 @@ export default function CardinalRewardsPage() {
                         <Links />
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <MainButton className="text-xs !font-medium">
+                        <MainButton className="text-xs font-medium!">
                           Upload Resume
                         </MainButton>
                       </td>
@@ -243,7 +243,7 @@ export default function CardinalRewardsPage() {
                         <Links />
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        <MainButton className="text-xs !font-medium">
+                        <MainButton className="text-xs font-medium!">
                           Intro Me
                         </MainButton>
                       </td>
