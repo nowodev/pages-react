@@ -2,7 +2,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 function Nav() {
-  const [theme, setTheme] = useState(localStorage.theme);
+  const [theme, setTheme] = useState(localStorage.theme ?? "dark");
 
   const changeTheme = () => {
     if (localStorage.theme === "dark" || !("theme" in localStorage)) {
