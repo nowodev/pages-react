@@ -113,7 +113,7 @@ function Country() {
                       return (
                         <span
                           key={border}
-                          className="px-5 py-1 text-xs bg-white rounded drop-shadow-md dark:bg-slate-600"
+                          className="px-5 py-1 text-xs bg-white rounded drop-shadow-md/40 dark:bg-slate-600"
                         >
                           {border}
                         </span>
