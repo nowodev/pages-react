@@ -1,10 +1,7 @@
 import {
-  AcademicCapIcon,
   BanknotesIcon,
-  CheckBadgeIcon,
   ClockIcon,
-  ReceiptRefundIcon,
-  UsersIcon,
+  GlobeAltIcon,
 } from "@heroicons/react/24/outline";
 import LayoutGrid from "./components/LayoutGrid";
 
@@ -36,10 +33,11 @@ const actions = [
   {
     title: "Countries Facts",
     href: "countries",
-    icon: ClockIcon,
-    iconForeground: "text-amber-700",
-    iconBackground: "bg-amber-50",
-    description: "Countries facts coding challenge.",
+    icon: GlobeAltIcon,
+    iconForeground: "text-blue-700",
+    iconBackground: "bg-blue-50",
+    description:
+      "A countries facts app using the REST Countries API. Displays a list of countries with their flags, names, populations, regions, and capitals.",
   },
 ];
 

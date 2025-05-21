@@ -1,6 +1,6 @@
 function CountryList({ flag, name, population, region, capital }) {
   return (
-    <div className="bg-white rounded-md dark:bg-slate-700 dark:text-white drop-shadow-lg/40">
+    <div className="bg-white h-full rounded-md dark:bg-slate-700 dark:text-white drop-shadow-lg/40">
       <img
         src={flag.svg}
         alt={flag.alt}
