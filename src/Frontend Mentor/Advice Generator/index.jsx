@@ -27,7 +27,7 @@ export default function AdviceGenerator() {
   return (
     <div className="bg-slate-800">
       <div className="container flex flex-col items-center justify-center h-screen px-4 mx-auto">
-        <div className="max-w-lg p-10 space-y-5 text-center bg-gray-600 rounded-2xl">
+        <div className="max-w-lg px-10 py-12 space-y-5 text-center bg-gray-600 rounded-2xl">
           <h1 className="text-base font-bold uppercase text-emerald-500">
             Advice #{advice.id}
           </h1>
@@ -35,13 +35,16 @@ export default function AdviceGenerator() {
 
           <img src={dividerDesktop} alt="Divider" />
         </div>
-        <button
-          disabled={isloading}
-          onClick={fetchAdvice}
-          className="p-3 -mt-6 rounded-full cursor-pointer round-shadow hover:scale-110 bg-emerald-600 w-fit"
-        >
-          <img src={dice} alt="dice" />
-        </button>
+        <div className="relative flex h-fit group">
+          <button
+            disabled={isloading}
+            onClick={fetchAdvice}
+            className="size-12 flex items-center justify-center -mt-6 z-10 relative rounded-full cursor-pointer bg-emerald-600"
+          >
+            <img src={dice} alt="dice" />
+          </button>
+          <button className="hidden group-hover:block absolute size-16 top-0 -left-2 -mt-8 z-0 rounded-full cursor-pointer bg-emerald-400 blur"></button>
+        </div>
       </div>
     </div>
   );
