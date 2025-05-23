@@ -43,7 +43,7 @@ export default function AdviceGenerator() {
           >
             <img src={dice} alt="dice" />
           </button>
-          <button className="hidden group-active:block group-hover:block absolute size-16 top-0 -left-2 -mt-8 z-0 rounded-full cursor-pointer bg-emerald-400 blur"></button>
+          <button className="hidden outline-none group-active:block group-hover:block absolute size-16 top-0 -left-2 -mt-8 z-0 rounded-full cursor-pointer bg-emerald-400 blur"></button>
         </div>
       </div>
     </div>
