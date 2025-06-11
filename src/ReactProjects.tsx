@@ -32,6 +32,15 @@ const actions = [
     description:
       "A bank app that allows users to deposit, withdraw, and request a loan (utilizing useReducer).",
   },
+  {
+    title: "Website Calculator",
+    href: "websitecalculator",
+    icon: CalculatorIcon,
+    iconForeground: "text-sky-700",
+    iconBackground: "bg-sky-50",
+    description:
+      "A basic calculator for generating an estimate for building a website",
+  }
   // {
   //   title: "Cardinal Talent",
   //   href: "cardinaltalent",
