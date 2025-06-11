@@ -27,9 +27,9 @@ function WebsiteCalculator() {
   }, [type, features, content, urgency]);
 
   return (
-    <div className="flex flex-col min-h-screen h-screen justify-center py-6 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-sm space-y-4 mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-center">
+    <div className="flex flex-col justify-center h-screen min-h-screen bg-background text-foreground">
+      <div className="max-w-sm px-4 py-6 mx-auto space-y-4 border rounded-lg sm:px-6 lg:px-8 border-border outline-ring/50">
+        <h1 className="mb-4 text-2xl font-bold text-center">
           Website Calculator
         </h1>
         <div className="*:not-first:mt-2">
@@ -104,7 +104,7 @@ function WebsiteCalculator() {
           </Select>
         </div>
         {total !== null && (
-          <div className="mt-4 text-green-700 font-bold text-lg">
+          <div className="mt-4 text-lg font-bold text-green-700">
             Estimated Price: ${total} + Support (
             {support === "" ? "None" : `$${support}/month`})
           </div>
