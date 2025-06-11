@@ -22,6 +22,7 @@ import BankApp from "./React Projects/BankApp.jsx";
 import Countries from "./Frontend Mentor/Countries/Index.jsx";
 import Country from "./Frontend Mentor/Countries/Country.jsx";
 import Layout from "./Frontend Mentor/Countries/components/Layout.jsx";
+import WebsiteCalculator from "./React Projects/WebsiteCalculator";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -69,6 +70,7 @@ createRoot(document.getElementById("root")).render(
               path="cardinalaipowernetworker"
               element={<CardinalAIPowerNetworker />}
             />
+            <Route path="websitecalculator" element={<WebsiteCalculator />} />
           </Route>
         </Route>
       </Routes>
