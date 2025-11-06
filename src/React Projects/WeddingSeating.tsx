@@ -238,7 +238,7 @@ export default function WeddingSeating() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="lg:sticky lg:top-6 bg-white rounded-lg shadow-lg p-6">
               <h2 className="text-xl font-bold text-gray-800 mb-4">Unassigned Guests</h2>
 
               <div className="relative mb-4">
@@ -252,7 +252,7 @@ export default function WeddingSeating() {
                 />
               </div>
 
-              <div className="space-y-2 max-h-[600px] overflow-y-auto">
+              <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 280px)' }}>
                 {filteredGuests.length === 0 && unassignedGuests.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">All guests assigned! 🎉</p>
                 ) : filteredGuests.length === 0 ? (
