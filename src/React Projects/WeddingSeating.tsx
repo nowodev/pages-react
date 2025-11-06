@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Users, Plus, X, Upload, Download, Search } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Users, Plus, X, Upload, Download, Search, Save, FileUp } from 'lucide-react';
 
 export default function WeddingSeating() {
   const [unassignedGuests, setUnassignedGuests] = useState([]);
@@ -7,6 +7,7 @@ export default function WeddingSeating() {
   const [uploadText, setUploadText] = useState('');
   const [showUploadModal, setShowUploadModal] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const fileInputRef = useRef(null);
 
   const handleUpload = () => {
     const names = uploadText
@@ -53,6 +54,13 @@ export default function WeddingSeating() {
     }
   };
 
+  const moveTable = (fromIndex, toIndex) => {
+    const newTables = [...tables];
+    const [movedTable] = newTables.splice(fromIndex, 1);
+    newTables.splice(toIndex, 0, movedTable);
+    setTables(newTables);
+  };
+
   const updateTableName = (tableId, newName) => {
     setTables(tables.map(table =>
       table.id === tableId ? { ...table, name: newName } : table
@@ -81,6 +89,45 @@ export default function WeddingSeating() {
     a.href = url;
     a.download = 'seating-arrangement.txt';
     a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const saveProgress = () => {
+    const data = {
+      unassignedGuests,
+      tables,
+      savedAt: new Date().toISOString()
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `seating-arrangement-${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target.result);
+        if (data.unassignedGuests && data.tables) {
+          setUnassignedGuests(data.unassignedGuests);
+          setTables(data.tables);
+          setShowUploadModal(false);
+        } else {
+          alert('Invalid file format. Please upload a valid seating arrangement file.');
+        }
+      } catch (error) {
+        alert('Error reading file. Please make sure it\'s a valid JSON file.');
+      }
+    };
+    reader.readAsText(file);
   };
 
   const filteredGuests = unassignedGuests.filter(guest =>
@@ -94,19 +141,52 @@ export default function WeddingSeating() {
           <div className="text-center mb-6">
             <Users className="w-16 h-16 text-pink-500 mx-auto mb-4" />
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Wedding Seating Planner</h1>
-            <p className="text-gray-600">Upload your guest list to get started</p>
+            <p className="text-gray-600">Upload your guest list or load saved progress</p>
           </div>
 
+          <div className="mb-6">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Load Existing Arrangement
+            </label>
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept=".json"
+              onChange={handleFileUpload}
+              className="hidden"
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition"
+            >
+              <FileUp className="w-5 h-5" />
+              Load Saved File
+            </button>
+          </div>
+
+          <div className="relative mb-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-white text-gray-500 font-semibold">OR START FRESH</span>
+            </div>
+          </div>
+
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Enter Guest Names (one per line)
+          </label>
           <textarea
             className="w-full h-64 p-4 border-2 border-gray-300 rounded-lg focus:border-pink-500 focus:outline-none font-mono text-sm"
-            placeholder="Enter guest names, one per line:&#10;&#10;John Smith&#10;Jane Doe&#10;Robert Johnson&#10;..."
+            placeholder="John Smith&#10;Jane Doe&#10;Robert Johnson&#10;Mary Williams&#10;..."
             value={uploadText}
             onChange={(e) => setUploadText(e.target.value)}
           />
 
           <button
             onClick={handleUpload}
-            className="w-full mt-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition"
+            disabled={uploadText.trim().length === 0}
+            className="w-full mt-4 bg-pink-500 hover:bg-pink-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition"
           >
             <Upload className="w-5 h-5" />
             Start Planning
@@ -122,13 +202,22 @@ export default function WeddingSeating() {
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-bold text-gray-800">Wedding Seating Arrangement</h1>
-            <button
-              onClick={exportArrangement}
-              className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2 transition"
-            >
-              <Download className="w-4 h-4" />
-              Export
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={saveProgress}
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2 transition"
+              >
+                <Save className="w-4 h-4" />
+                Save Progress
+              </button>
+              <button
+                onClick={exportArrangement}
+                className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2 transition"
+              >
+                <Download className="w-4 h-4" />
+                Export
+              </button>
+            </div>
           </div>
 
           <div className="flex gap-4 text-sm">
@@ -196,25 +285,42 @@ export default function WeddingSeating() {
             </div>
 
             <div className="space-y-4">
-              {tables.map(table => (
+              {tables.map((table, tableIndex) => (
                 <div
                   key={table.id}
-                  className="bg-white rounded-lg shadow-lg p-6"
-                  onDragOver={(e) => e.preventDefault()}
+                  draggable
+                  onDragStart={(e) => {
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('tableIndex', tableIndex.toString());
+                  }}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                  }}
                   onDrop={(e) => {
                     e.preventDefault();
-                    const guest = e.dataTransfer.getData('guest');
-                    if (guest && table.guests.length < 8) {
-                      addGuestToTable(table.id, guest);
+                    const draggedTableIndex = e.dataTransfer.getData('tableIndex');
+                    const draggedGuest = e.dataTransfer.getData('guest');
+
+                    if (draggedTableIndex !== '') {
+                      const fromIndex = parseInt(draggedTableIndex);
+                      if (fromIndex !== tableIndex) {
+                        moveTable(fromIndex, tableIndex);
+                      }
+                    } else if (draggedGuest && table.guests.length < 8) {
+                      addGuestToTable(table.id, draggedGuest);
                     }
                   }}
+                  className="bg-white rounded-lg shadow-lg p-6 cursor-move hover:shadow-xl transition"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <input
                       type="text"
                       value={table.name}
                       onChange={(e) => updateTableName(table.id, e.target.value)}
-                      className="text-xl font-bold text-gray-800 border-b-2 border-transparent hover:border-gray-300 focus:border-pink-500 focus:outline-none px-2"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xl font-bold text-gray-800 border-b-2 border-transparent hover:border-gray-300 focus:border-pink-500 focus:outline-none px-2 cursor-text"
                     />
                     <div className="flex items-center gap-2">
                       <span className={`px-3 py-1 rounded-full text-sm font-semibold ${table.guests.length === 8
