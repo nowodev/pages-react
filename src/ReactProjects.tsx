@@ -40,7 +40,16 @@ const actions = [
     iconBackground: "bg-sky-50",
     description:
       "A basic calculator for generating an estimate for building a website",
-  }
+  },
+  {
+    title: "Wedding Seating Arranger",
+    href: "seatarranger",
+    icon: CalculatorIcon,
+    iconForeground: "text-sky-700",
+    iconBackground: "bg-sky-50",
+    description:
+      "A basic calculator for generating an estimate for building a website",
+  },
   // {
   //   title: "Payroll",
   //   href: "#",
