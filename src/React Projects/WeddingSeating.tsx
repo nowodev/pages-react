@@ -7,7 +7,10 @@ export default function WeddingSeating() {
   const [uploadText, setUploadText] = useState('');
   const [showUploadModal, setShowUploadModal] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [newGuestName, setNewGuestName] = useState(''); // NEW: State for new guest input
+  
   const fileInputRef = useRef(null);
+  const newGuestInputRef = useRef(null); // NEW: Ref for new guest input focus
 
   const handleUpload = () => {
     const names = uploadText
@@ -43,7 +46,10 @@ export default function WeddingSeating() {
         ? { ...table, guests: table.guests.filter(name => name !== guestName) }
         : table
     ));
-    setUnassignedGuests([...unassignedGuests, guestName]);
+    // Ensure the guest is added back only if they aren't already in the unassigned list (safety check)
+    if (!unassignedGuests.includes(guestName)) {
+        setUnassignedGuests([...unassignedGuests, guestName]);
+    }
   };
 
   const deleteTable = (tableId) => {
@@ -129,6 +135,25 @@ export default function WeddingSeating() {
     };
     reader.readAsText(file);
   };
+
+  // NEW: Function to add a guest
+  const addNewGuest = () => {
+    const trimmedName = newGuestName.trim();
+    if (trimmedName && !unassignedGuests.includes(trimmedName)) {
+        setUnassignedGuests([...unassignedGuests, trimmedName]);
+        setNewGuestName(''); // Clear input
+        setSearchQuery(''); // Clear search to see the new guest
+        newGuestInputRef.current?.focus(); // Keep focus on the input for quick entry
+    } else if (unassignedGuests.includes(trimmedName)) {
+        alert(`Guest "${trimmedName}" is already on the list.`);
+    }
+  };
+
+  // NEW: Function to delete an unassigned guest
+  const deleteUnassignedGuest = (guestName) => {
+    setUnassignedGuests(unassignedGuests.filter(name => name !== guestName));
+  };
+
 
   const filteredGuests = unassignedGuests.filter(guest =>
     guest.toLowerCase().includes(searchQuery.toLowerCase())
@@ -241,6 +266,32 @@ export default function WeddingSeating() {
             <div className="lg:sticky lg:top-6 bg-white rounded-lg shadow-lg p-6">
               <h2 className="text-xl font-bold text-gray-800 mb-4">Unassigned Guests</h2>
 
+              {/* NEW: Add Guest Section */}
+              <div className="flex mb-4 gap-2">
+                <input
+                  type="text"
+                  placeholder="Add new guest name..."
+                  value={newGuestName}
+                  onChange={(e) => setNewGuestName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      addNewGuest();
+                    }
+                  }}
+                  ref={newGuestInputRef}
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-pink-500 focus:outline-none"
+                />
+                <button
+                  onClick={addNewGuest}
+                  disabled={newGuestName.trim().length === 0}
+                  className="bg-pink-500 hover:bg-pink-600 disabled:bg-gray-300 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2 transition"
+                  title="Add Guest"
+                >
+                  <Plus className="w-5 h-5" />
+                </button>
+              </div>
+              {/* END NEW: Add Guest Section */}
+
               <div className="relative mb-4">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
@@ -252,7 +303,7 @@ export default function WeddingSeating() {
                 />
               </div>
 
-              <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+              <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 350px)' }}> {/* Adjusted Max Height */}
                 {filteredGuests.length === 0 && unassignedGuests.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">All guests assigned! 🎉</p>
                 ) : filteredGuests.length === 0 ? (
@@ -261,11 +312,23 @@ export default function WeddingSeating() {
                   filteredGuests.map((guest, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition cursor-move"
+                      className="bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition cursor-move flex items-center justify-between" // Added flex for delete button
                       draggable
                       onDragStart={(e) => e.dataTransfer.setData('guest', guest)}
                     >
-                      <p className="text-gray-800">{guest}</p>
+                      <p className="text-gray-800 truncate">{guest}</p>
+                      {/* NEW: Delete Button for Unassigned Guest */}
+                      <button
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent drag from starting if click is on the button
+                            deleteUnassignedGuest(guest);
+                        }}
+                        className="text-red-400 hover:text-red-600 transition ml-2 p-1"
+                        title={`Delete ${guest}`}
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                      {/* END NEW: Delete Button */}
                     </div>
                   ))
                 )}
