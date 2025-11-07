@@ -1,5 +1,5 @@
 import React, { useState, useRef, DragEvent, ChangeEvent, KeyboardEvent } from 'react';
-import { Users, Plus, X, Upload, Download, Search, Save, FileUp, Hash, Disc, Move } from 'lucide-react';
+import { Users, Plus, X, Upload, Download, Search, Save, FileUp, Hash, Disc } from 'lucide-react';
 
 // ===============================================
 // TYPE DEFINITIONS
@@ -25,7 +25,6 @@ interface SeatProps {
   guest: Seat;
   tableId: number;
   seatIndex: number;
-  // Simplified onDragStart to return the drag event
   onDragStart: (e: DragEvent<HTMLDivElement>) => void;
   onDragOver: (e: DragEvent<HTMLDivElement>) => void;
   onDrop: (e: DragEvent<HTMLDivElement>, tableId: number, seatIndex: number) => void;
@@ -50,11 +49,11 @@ const DEFAULT_SHAPE: TableShape = 'circle';
 
 /** Helper to create an array of seats */
 const createSeats = (capacity: number, currentSeats: Seat[] = []): Seat[] => {
-  const seats: Seat[] = Array(capacity).fill(null);
-  currentSeats.slice(0, capacity).forEach((guest, index) => {
-    if (guest) seats[index] = guest;
-  });
-  return seats;
+    const seats: Seat[] = Array(capacity).fill(null);
+    currentSeats.slice(0, capacity).forEach((guest, index) => {
+        if (guest) seats[index] = guest;
+    });
+    return seats;
 }
 
 /** Helper to get the first available empty seat index */
@@ -106,8 +105,8 @@ function Seat({ guest, tableId, seatIndex, onDragStart, onDragOver, onDrop, onRe
     >
       <div
         className={`w-full h-full p-2 rounded-lg flex items-center justify-between gap-1 text-sm transition-all
-          ${isOccupied
-            ? 'bg-pink-100 border-pink-400 border shadow-md cursor-move'
+          ${isOccupied 
+            ? 'bg-pink-100 border-pink-400 border shadow-md cursor-move' 
             : 'bg-gray-100 border-dashed border-gray-400 border-2 text-gray-400'
           }`}
         draggable={isOccupied}
@@ -115,7 +114,7 @@ function Seat({ guest, tableId, seatIndex, onDragStart, onDragOver, onDrop, onRe
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        <span
+        <span 
           className="flex-1 text-xs font-medium text-left break-words"
           title={guest || undefined}
         >
@@ -143,20 +142,19 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
   const { id, shape, seats } = table;
   const seatElements: JSX.Element[] = [];
 
-  // FIX: This drop handler is now only for guests being dropped onto an empty table area.
   const handleTableDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation(); // Prevents drop from bubbling to the outer table card (which handles sorting)
+      e.preventDefault();
+      e.stopPropagation(); 
+      
+      const sourceType = e.dataTransfer.getData('sourceType');
 
-    const sourceType = e.dataTransfer.getData('sourceType');
-
-    // Only process if it's a guest being dropped (unassigned or from another seat)
-    if (sourceType === 'unassigned' || sourceType === 'seat') {
-      const emptySeatIndex = getEmptySeatIndex(seats);
-      if (emptySeatIndex !== -1) {
-        onDrop(e, id, emptySeatIndex);
+      // Only process if it's a guest being dropped (unassigned or from another seat)
+      if (sourceType === 'unassigned' || sourceType === 'seat') {
+          const emptySeatIndex = getEmptySeatIndex(seats);
+          if (emptySeatIndex !== -1) {
+              onDrop(e, id, emptySeatIndex);
+          }
       }
-    }
   };
 
   // --- Seat Position Calculation ---
@@ -164,7 +162,7 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
     const radius = 120;
     const tableSize = 280;
     const seatSize = 70;
-
+    
     seats.forEach((guest, index) => {
       const angle = (index / seats.length) * 2 * Math.PI - Math.PI / 2;
       const x = radius * Math.cos(angle) + (tableSize / 2) - (seatSize / 2);
@@ -179,13 +177,13 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
         </div>
       );
     });
-
+    
     return (
       <div
         className="relative bg-gray-100 border-4 border-gray-300 rounded-full"
         style={{ width: `${tableSize}px`, height: `${tableSize}px`, margin: '20px auto' }}
-        onDragOver={(e) => e.preventDefault()} // Allows drops
-        onDrop={handleTableDrop} // Handles dropping guests onto the table
+        onDragOver={(e) => e.preventDefault()} 
+        onDrop={handleTableDrop} 
       >
         {seatElements}
       </div>
@@ -203,8 +201,8 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
       <div
         className="p-4 bg-gray-100 rounded-lg border-4 border-gray-300 grid gap-2"
         style={{ gridTemplateColumns: `repeat(${seatsPerRow}, 1fr)` }}
-        onDragOver={(e) => e.preventDefault()} // Allows drops
-        onDrop={handleTableDrop} // Handles dropping guests onto the table
+        onDragOver={(e) => e.preventDefault()} 
+        onDrop={handleTableDrop} 
       >
         {seatElements}
       </div>
@@ -222,8 +220,8 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
       <div
         className="p-4 bg-gray-100 rounded-lg border-4 border-gray-300 grid gap-2"
         style={{ gridTemplateColumns: `repeat(${sideLength}, 1fr)`, aspectRatio: '1 / 1', maxWidth: '400px', margin: 'auto' }}
-        onDragOver={(e) => e.preventDefault()} // Allows drops
-        onDrop={handleTableDrop} // Handles dropping guests onto the table
+        onDragOver={(e) => e.preventDefault()} 
+        onDrop={handleTableDrop} 
       >
         {seatElements}
       </div>
@@ -237,12 +235,12 @@ function TableLayout({ table, onDragStart, onDragOver, onDrop, onRemove }: Table
 // ===============================================
 export default function WeddingSeating(): JSX.Element {
   const [unassignedGuests, setUnassignedGuests] = useState<Guest[]>([]);
-  const [tables, setTables] = useState<Table[]>([]);
+  const [tables, setTables] = useState<Table[]>([]); 
   const [uploadText, setUploadText] = useState<string>('');
   const [showUploadModal, setShowUploadModal] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [newGuestName, setNewGuestName] = useState<string>('');
-
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
   const newGuestInputRef = useRef<HTMLInputElement>(null);
 
@@ -270,21 +268,23 @@ export default function WeddingSeating(): JSX.Element {
 
   const addGuestToSeat = (tableId: number, guestName: Guest, seatIndex: number) => {
     setTables(tables.map(table => {
-      if (table.id === tableId) {
-        const existingGuest = table.seats[seatIndex];
-        if (existingGuest) {
-          setUnassignedGuests(prev => [...prev.filter(g => g !== guestName), existingGuest]);
-        } else {
-          setUnassignedGuests(prev => prev.filter(g => g !== guestName));
+        if (table.id === tableId) {
+            const existingGuest = table.seats[seatIndex];
+            if (existingGuest) {
+                // If target seat is occupied, move the existing guest back to unassigned list
+                setUnassignedGuests(prev => [...prev.filter(g => g !== guestName), existingGuest]);
+            } else {
+                // If target seat is empty, simply remove the new guest from unassigned
+                setUnassignedGuests(prev => prev.filter(g => g !== guestName));
+            }
+            const newSeats = [...table.seats];
+            newSeats[seatIndex] = guestName;
+            return { ...table, seats: newSeats };
         }
-        const newSeats = [...table.seats];
-        newSeats[seatIndex] = guestName;
-        return { ...table, seats: newSeats };
-      }
-      return table;
+        return table;
     }));
   };
-
+  
   const removeGuestFromSeat = (tableId: number, seatIndex: number, guestName: Guest) => {
     setTables(tables.map(table => {
       if (table.id === tableId) {
@@ -295,36 +295,38 @@ export default function WeddingSeating(): JSX.Element {
       return table;
     }));
     if (guestName && !unassignedGuests.includes(guestName)) {
-      setUnassignedGuests([...unassignedGuests, guestName]);
+        setUnassignedGuests([...unassignedGuests, guestName]);
     }
   };
 
+  // FIX APPLIED HERE: Correctly handles state updates for swapping guests.
   const rearrangeGuestsOnTable = (sourceTableId: number, sourceSeatIndex: number, targetTableId: number, targetSeatIndex: number) => {
     setTables(prevTables => {
-      const sourceTable = prevTables.find(t => t.id === sourceTableId);
-      const targetTable = prevTables.find(t => t.id === targetTableId);
-      if (!sourceTable || !targetTable) return prevTables;
+        const newTables = prevTables.map(table => {
+            // Find both source and target tables, even if they are the same table
+            if (table.id === sourceTableId || table.id === targetTableId) {
+                return { ...table, seats: [...table.seats] }; // Shallow copy the table and deep copy the seats array
+            }
+            return table;
+        });
 
-      const guestToMove = sourceTable.seats[sourceSeatIndex];
-      const guestToSwap = targetTable.seats[targetSeatIndex];
+        const sourceTable = newTables.find(t => t.id === sourceTableId);
+        const targetTable = newTables.find(t => t.id === targetTableId);
+        
+        if (!sourceTable || !targetTable) return prevTables;
 
-      const newTables = prevTables.map(table => {
-        if (table.id === sourceTableId) {
-          const newSeats = [...table.seats];
-          newSeats[sourceSeatIndex] = guestToSwap;
-          if (sourceTableId === targetTableId) {
-            newSeats[targetSeatIndex] = guestToMove;
-          }
-          return { ...table, seats: newSeats };
-        }
-        if (table.id === targetTableId && sourceTableId !== targetTableId) {
-          const newSeats = [...table.seats];
-          newSeats[targetSeatIndex] = guestToMove;
-          return { ...table, seats: newSeats };
-        }
-        return table;
-      });
-      return newTables;
+        const guestToMove = sourceTable.seats[sourceSeatIndex];
+        const guestToSwap = targetTable.seats[targetSeatIndex]; 
+        
+        if (!guestToMove) return prevTables; // Should never happen if drag start is correct
+
+        // 1. Move the source guest to the target seat
+        targetTable.seats[targetSeatIndex] = guestToMove; 
+
+        // 2. Move the target guest (or null) to the source seat
+        sourceTable.seats[sourceSeatIndex] = guestToSwap;
+
+        return newTables; // Return the new array with modified tables
     });
   };
 
@@ -342,13 +344,13 @@ export default function WeddingSeating(): JSX.Element {
       table.id === tableId ? { ...table, name: newName } : table
     ));
   };
-
+    
   const updateTableCapacity = (tableId: number, newCapacity: number) => {
     setTables(tables.map(table => {
       if (table.id === tableId) {
         const guestsToReturn = table.seats.slice(newCapacity).filter(guest => guest !== null) as Guest[];
         if (guestsToReturn.length > 0) {
-          setUnassignedGuests(prevGuests => [...prevGuests, ...guestsToReturn]);
+            setUnassignedGuests(prevGuests => [...prevGuests, ...guestsToReturn]);
         }
         const newSeats = createSeats(newCapacity, table.seats);
         return { ...table, capacity: newCapacity, seats: newSeats };
@@ -373,7 +375,7 @@ export default function WeddingSeating(): JSX.Element {
   };
 
   // --- Drag & Drop Handlers ---
-
+  
   const handleUnassignedDragStart = (e: DragEvent<HTMLDivElement>, guestName: Guest) => {
     e.dataTransfer.setData('guestName', guestName);
     e.dataTransfer.setData('sourceType', 'unassigned');
@@ -382,34 +384,33 @@ export default function WeddingSeating(): JSX.Element {
   const handleSeatDrop = (e: DragEvent<HTMLDivElement>, targetTableId: number, targetSeatIndex: number) => {
     const guestName = e.dataTransfer.getData('guestName');
     const sourceType = e.dataTransfer.getData('sourceType');
-
-    // Check if a guest is being dragged, and not a table
-    if (!guestName || e.dataTransfer.getData('sourceType') === 'table') return;
+    
+    if (!guestName || sourceType === 'table') return;
 
     if (sourceType === 'unassigned') {
       addGuestToSeat(targetTableId, guestName, targetSeatIndex);
     } else if (sourceType === 'seat') {
       const sourceTableId = parseInt(e.dataTransfer.getData('sourceTableId'));
       const sourceSeatIndex = parseInt(e.dataTransfer.getData('sourceSeatIndex'));
-
+      
       if (sourceTableId === targetTableId && sourceSeatIndex === targetSeatIndex) {
-        return;
+          return;
       }
-
+      
       rearrangeGuestsOnTable(sourceTableId, sourceSeatIndex, targetTableId, targetSeatIndex);
     }
   };
-
+  
   const handleUnassignedDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const guestName = e.dataTransfer.getData('guestName');
-    const sourceType = e.dataTransfer.getData('sourceType');
-
-    if (sourceType === 'seat') {
-      const sourceTableId = parseInt(e.dataTransfer.getData('sourceTableId'));
-      const sourceSeatIndex = parseInt(e.dataTransfer.getData('sourceSeatIndex'));
-      removeGuestFromSeat(sourceTableId, sourceSeatIndex, guestName);
-    }
+      e.preventDefault();
+      const guestName = e.dataTransfer.getData('guestName');
+      const sourceType = e.dataTransfer.getData('sourceType');
+      
+      if (sourceType === 'seat') {
+          const sourceTableId = parseInt(e.dataTransfer.getData('sourceTableId'));
+          const sourceSeatIndex = parseInt(e.dataTransfer.getData('sourceSeatIndex'));
+          removeGuestFromSeat(sourceTableId, sourceSeatIndex, guestName);
+      }
   };
 
 
@@ -417,7 +418,7 @@ export default function WeddingSeating(): JSX.Element {
 
   const exportArrangement = () => {
     let output = 'WEDDING SEATING ARRANGEMENT\n\n';
-
+    
     tables.forEach(table => {
       output += `${table.name}\n`;
       table.seats.forEach(guest => {
@@ -425,7 +426,7 @@ export default function WeddingSeating(): JSX.Element {
           output += `${guest}\n`;
         }
       });
-      output += '\n';
+      output += '\n'; 
     });
 
     if (unassignedGuests.length > 0) {
@@ -468,14 +469,14 @@ export default function WeddingSeating(): JSX.Element {
       try {
         if (!event.target?.result) return;
         const data = JSON.parse(event.target.result as string);
-
+        
         if (data.unassignedGuests && data.tables) {
           const loadedTables: Table[] = data.tables.map((t: any) => ({
-            id: t.id || Date.now(),
-            name: t.name || 'Imported Table',
-            capacity: t.capacity || DEFAULT_CAPACITY,
-            shape: t.shape || DEFAULT_SHAPE,
-            seats: t.seats || createSeats(t.capacity || DEFAULT_CAPACITY, t.guests || [])
+              id: t.id || Date.now(),
+              name: t.name || 'Imported Table',
+              capacity: t.capacity || DEFAULT_CAPACITY,
+              shape: t.shape || DEFAULT_SHAPE,
+              seats: t.seats || createSeats(t.capacity || DEFAULT_CAPACITY, t.guests || []) 
           }));
           setUnassignedGuests(data.unassignedGuests);
           setTables(loadedTables);
@@ -493,14 +494,14 @@ export default function WeddingSeating(): JSX.Element {
   const addNewGuest = () => {
     const trimmedName = newGuestName.trim();
     const isAlreadySeated = tables.some(t => t.seats.includes(trimmedName));
-
+    
     if (trimmedName && !unassignedGuests.includes(trimmedName) && !isAlreadySeated) {
-      setUnassignedGuests([...unassignedGuests, trimmedName]);
-      setNewGuestName('');
-      setSearchQuery('');
-      newGuestInputRef.current?.focus();
+        setUnassignedGuests([...unassignedGuests, trimmedName]);
+        setNewGuestName(''); 
+        setSearchQuery(''); 
+        newGuestInputRef.current?.focus(); 
     } else if (unassignedGuests.includes(trimmedName) || isAlreadySeated) {
-      alert(`Guest "${trimmedName}" is already on the list.`);
+        alert(`Guest "${trimmedName}" is already on the list.`);
     }
   };
 
@@ -566,7 +567,7 @@ export default function WeddingSeating(): JSX.Element {
           <button
             onClick={handleUpload}
             disabled={uploadText.trim().length === 0}
-            className="w-full mt-4 bg-pink-500 hover:bg-pink-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition"
+            className="w-full mt-4 bg-pink-500 hover:bg-pink-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2 transition"
           >
             <Upload className="w-5 h-5" />
             Start Planning
@@ -619,7 +620,7 @@ export default function WeddingSeating(): JSX.Element {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
-            <div
+            <div 
               className="lg:sticky lg:top-6 bg-white rounded-lg shadow-lg p-6"
               onDragOver={(e: DragEvent<HTMLDivElement>) => e.preventDefault()}
               onDrop={handleUnassignedDrop}
@@ -678,8 +679,8 @@ export default function WeddingSeating(): JSX.Element {
                       <p className="text-gray-800 truncate">{guest}</p>
                       <button
                         onClick={(e) => {
-                          e.stopPropagation();
-                          deleteUnassignedGuest(guest);
+                            e.stopPropagation(); 
+                            deleteUnassignedGuest(guest);
                         }}
                         className="text-red-400 hover:text-red-600 transition ml-2 p-1"
                         title={`Delete ${guest}`}
@@ -708,21 +709,19 @@ export default function WeddingSeating(): JSX.Element {
               {tables.map((table, tableIndex) => (
                 <div
                   key={table.id}
-                  // ADDED: The table is now draggable itself (not just the handle)
                   draggable
                   onDragStart={(e: DragEvent<HTMLDivElement>) => {
-                    e.dataTransfer.setData('tableIndex', tableIndex.toString());
-                    e.dataTransfer.setData('sourceType', 'table'); // Set source type for table sorting
-                    e.stopPropagation();
+                      e.dataTransfer.setData('tableIndex', tableIndex.toString());
+                      e.dataTransfer.setData('sourceType', 'table'); 
+                      e.stopPropagation(); 
                   }}
                   className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition cursor-grab"
-
-                  // FIX: Drop handler for table sorting - checks sourceType is 'table'
+                  
                   onDragOver={(e: DragEvent<HTMLDivElement>) => e.preventDefault()}
                   onDrop={(e: DragEvent<HTMLDivElement>) => {
                     e.preventDefault();
                     e.stopPropagation();
-
+                    
                     const sourceType = e.dataTransfer.getData('sourceType');
 
                     if (sourceType === 'table') {
@@ -733,72 +732,69 @@ export default function WeddingSeating(): JSX.Element {
                           moveTable(fromIndex, tableIndex);
                         }
                       }
-                    }
-                    // Note: Drops for guests onto empty seats are handled inside TableLayout's drop handler
+                    } 
                   }}
                 >
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
                     <div className="flex items-center gap-2">
-                      {/* Removed the separate Move icon as the whole card is draggable */}
                       <input
                         type="text"
                         value={table.name}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => updateTableName(table.id, e.target.value)}
-                        // Prevent dragging when interacting with the input
-                        onDragStart={(e) => e.stopPropagation()}
+                        onDragStart={(e) => e.stopPropagation()} 
                         className="text-xl font-bold text-gray-800 border-b-2 border-transparent hover:border-gray-300 focus:border-pink-500 focus:outline-none px-2 cursor-text w-auto"
                         style={{ minWidth: '150px' }}
                       />
                     </div>
-
+                    
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <Hash className="w-4 h-4 text-purple-500" />
-                        <select
-                          value={table.capacity}
-                          onChange={(e: ChangeEvent<HTMLSelectElement>) => updateTableCapacity(table.id, parseInt(e.target.value))}
-                          className="bg-white border border-gray-300 rounded-lg p-1 text-sm font-semibold focus:ring-purple-500 focus:border-purple-500"
-                        >
-                          {CAPACITY_OPTIONS.map(cap => (
-                            <option key={cap} value={cap}>
-                              {cap}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <Disc className="w-4 h-4 text-blue-500" />
-                        <select
-                          value={table.shape}
-                          onChange={(e: ChangeEvent<HTMLSelectElement>) => updateTableShape(table.id, e.target.value as TableShape)}
-                          className="bg-white border border-gray-300 rounded-lg p-1 text-sm font-semibold focus:ring-blue-500 focus:border-blue-500 capitalize"
-                        >
-                          {TABLE_SHAPES.map(shape => (
-                            <option key={shape} value={shape}>{shape}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getSeatedCount(table.seats) === table.capacity
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-yellow-100 text-yellow-700'
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                            <Hash className="w-4 h-4 text-purple-500" />
+                            <select
+                                value={table.capacity}
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) => updateTableCapacity(table.id, parseInt(e.target.value))}
+                                className="bg-white border border-gray-300 rounded-lg p-1 text-sm font-semibold focus:ring-purple-500 focus:border-purple-500"
+                            >
+                                {CAPACITY_OPTIONS.map(cap => (
+                                    <option key={cap} value={cap}>
+                                        {cap}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                            <Disc className="w-4 h-4 text-blue-500" />
+                            <select
+                                value={table.shape}
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) => updateTableShape(table.id, e.target.value as TableShape)}
+                                className="bg-white border border-gray-300 rounded-lg p-1 text-sm font-semibold focus:ring-blue-500 focus:border-blue-500 capitalize"
+                            >
+                                {TABLE_SHAPES.map(shape => (
+                                    <option key={shape} value={shape}>{shape}</option>
+                                ))}
+                            </select>
+                        </div>
+                        
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getSeatedCount(table.seats) === table.capacity
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-yellow-100 text-yellow-700'
                         }`}>
-                        {getSeatedCount(table.seats)}/{table.capacity}
-                      </span>
-                      <button
-                        onClick={() => deleteTable(table.id)}
-                        className="text-red-500 hover:text-red-700 transition"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
+                            {getSeatedCount(table.seats)}/{table.capacity}
+                        </span>
+                        <button
+                            onClick={() => deleteTable(table.id)}
+                            className="text-red-500 hover:text-red-700 transition"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
                     </div>
                   </div>
 
                   <TableLayout
                     table={table}
-                    onDragStart={() => { }}
-                    onDragOver={() => { }}
+                    onDragStart={() => {}}
+                    onDragOver={() => {}}
                     onDrop={handleSeatDrop}
                     onRemove={removeGuestFromSeat}
                   />
