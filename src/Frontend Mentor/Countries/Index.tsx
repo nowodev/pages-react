@@ -26,11 +26,13 @@ function Countries() {
       async function fetchCountries() {
         try {
           setIsLoading(true);
-          const res = await fetch(`${BASE_URL}/all`);
+          const res = await fetch(`${BASE_URL}/all?fields=name,region,cca3,flags,population,capital`);
           const data = await res.json();
-          localStorage.setItem("countries", JSON.stringify(data));
-          setCountries(data);
-          setFilteredCountries(data);
+          if (res.ok) {
+            localStorage.setItem("countries", JSON.stringify(data));
+            setCountries(data);
+            setFilteredCountries(data);
+          }
         } catch (error) {
           console.error(error);
         } finally {
