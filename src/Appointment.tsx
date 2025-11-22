@@ -75,7 +75,7 @@ function Appointment() {
         // formatUTCToTimezone(formattedDate, timezone)
         try {
             setIsLoading(true);
-            const res = await fetch(`${BASE_URL}/availabilities/${user}/slots?date=${formattedDate}`, {
+            const res = await fetch(`${BASE_URL}/availabilities/${user}/slots?date=${formattedDate}&request_timezone=${timezone}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -123,7 +123,7 @@ function Appointment() {
                     patient_id: "123",
                     patient_email: "testemail@gmail.com",
                     patient_name: "Test Name",
-                    patient_phone: "Test Phone",
+                    patient_phone: "+1234567890",
                     start_time: time,
                     duration: Number(duration),
                     type: "phone",
@@ -289,7 +289,7 @@ function Appointment() {
                                     ]}
                                 />
 
-                                {timeSlots.length > 0 && (
+                                {timeSlots?.length > 0 && (
                                     <div className="relative w-full max-sm:h-48 sm:w-40">
                                         <div className="absolute inset-0 py-4 max-sm:border-t">
                                             <ScrollArea className="h-full sm:border-s">
