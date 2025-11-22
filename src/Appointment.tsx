@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select"
 import { toastManager } from "./components/ui/toast";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://cs.test/api";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const token = import.meta.env.VITE_API_TOKEN;
 
 const daysOfWeek = [0, 1, 2, 3, 4, 5, 6];
@@ -166,6 +166,7 @@ function Appointment() {
 
     function handleResetAll() {
         setUser(null);
+        setTimezone(null);
         handleResetTime();
     }
 
@@ -273,7 +274,7 @@ function Appointment() {
                     </div>
                 )}
 
-                {timezone && (
+                {user && timezone && (
                     <div className="*:not-first:mt-2 w-fit">
                         <Label htmlFor="">Select Date</Label>
                         <div className="rounded-md border">
