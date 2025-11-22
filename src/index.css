@@ -74,6 +74,8 @@
   --color-sidebar-border: var(--sidebar-border);
 
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-destructive-foreground: var(--destructive-foreground);
 }
 
 :root {
@@ -141,6 +143,8 @@
   --sidebar-border: oklch(0.922 0 0);
 
   --sidebar-ring: oklch(0.708 0 0);
+
+  --destructive-foreground: var(--color-red-700);
 }
 
 .dark {
@@ -206,6 +210,8 @@
   --sidebar-border: oklch(1 0 0 / 10%);
 
   --sidebar-ring: oklch(0.556 0 0);
+
+  --destructive-foreground: var(--color-red-400);
 }
 
 /* @layer base {
@@ -216,3 +222,12 @@
     @apply bg-background text-foreground;
   }
 } */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

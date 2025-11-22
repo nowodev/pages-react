@@ -18,6 +18,7 @@ import Country from "./Frontend Mentor/Countries/Country.jsx";
 import Layout from "./Frontend Mentor/Countries/components/Layout.jsx";
 import WebsiteCalculator from "./React Projects/WebsiteCalculator";
 import WeddingSeating from "./React Projects/WeddingSeating.js";
+import Appointment from "./Appointment.js";
 
 const root = document.getElementById("root") as HTMLElement;
 
@@ -54,6 +55,7 @@ createRoot(root).render(
             <Route path="bank-app" element={<BankApp />} />
             <Route path="websitecalculator" element={<WebsiteCalculator />} />
             <Route path="seatarranger" element={<WeddingSeating />} />
+            <Route path="appointment" element={<Appointment />} />
           </Route>
         </Route>
       </Routes>
