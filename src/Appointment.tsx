@@ -120,10 +120,10 @@ function Appointment() {
                 },
                 body: JSON.stringify({
                     user_id: user,
-                    patient_id: "123",
-                    patient_email: "testemail@gmail.com",
-                    patient_name: "Test Name",
-                    patient_phone: "+1234567890",
+                    // patient_id: "123",
+                    guest_email: "testemail@gmail.com",
+                    guest_name: "Test Name",
+                    guest_phone: "+1234567890",
                     start_time: time,
                     duration: Number(duration),
                     type: "phone",
@@ -161,13 +161,15 @@ function Appointment() {
     function handleResetTime() {
         setDate(undefined);
         setTime(null);
+        setTimezone(null);
         setTimeSlots([]);
     }
 
     function handleResetAll() {
+        setUsers([]);
         setUser(null);
-        setTimezone(null);
         handleResetTime();
+        setDuration(null);
     }
 
     useEffect(() => {
