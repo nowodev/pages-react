@@ -12,6 +12,8 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { toastManager } from "./components/ui/toast";
+import { Input } from "./components/ui/input";
+import { withMask } from "use-mask-input";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const token = import.meta.env.VITE_API_TOKEN;
@@ -20,7 +22,7 @@ const daysOfWeek = [0, 1, 2, 3, 4, 5, 6];
 
 function Appointment() {
     const [users, setUsers] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [timeSlots, setTimeSlots] = useState([]);
     const [user, setUser] = useState<string | null>(null);
     const today = new Date()
@@ -32,7 +34,7 @@ function Appointment() {
 
     async function getUsers() {
         try {
-            setIsLoading(true);
+            setLoading(true);
             const res = await fetch(`${BASE_URL}/users`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -45,13 +47,13 @@ function Appointment() {
         } catch (error) {
             console.error(error);
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
     }
 
     async function getAvailableDays(userId: string) {
         try {
-            setIsLoading(true);
+            setLoading(true);
             const res = await fetch(`${BASE_URL}/availabilities/${userId}/days`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -66,15 +68,14 @@ function Appointment() {
         } catch (error) {
             console.error(error);
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
     }
 
     async function handleSelectDate(newDate: Date) {
         const formattedDate = format(newDate, "yyyy-MM-dd");
-        // formatUTCToTimezone(formattedDate, timezone)
         try {
-            setIsLoading(true);
+            setLoading(true);
             const res = await fetch(`${BASE_URL}/availabilities/${user}/slots?date=${formattedDate}&request_timezone=${timezone}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -96,11 +97,12 @@ function Appointment() {
         } finally {
             setDate(newDate)
             setTime(null)
-            setIsLoading(false);
+            setLoading(false);
         }
     }
 
-    async function bookAppointment() {
+    async function bookAppointment(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
         if (!time || !date || !duration) {
             toastManager.add({
                 description: "Please select a date and time for your appointment.",
@@ -111,7 +113,9 @@ function Appointment() {
         }
 
         try {
-            setIsLoading(true);
+            const formData = new FormData(e.currentTarget);
+            setLoading(true);
+
             const res = await fetch(`${BASE_URL}/appointments/schedule`, {
                 method: "POST",
                 headers: {
@@ -121,9 +125,9 @@ function Appointment() {
                 body: JSON.stringify({
                     user_id: user,
                     // patient_id: "123",
-                    guest_email: "testemail@gmail.com",
-                    guest_name: "Test Name",
-                    guest_phone: "+1234567890",
+                    guest_email: formData.get("email") as string | null ?? "",
+                    guest_name: formData.get("fullname") as string | null ?? "",
+                    guest_phone: formData.get("phone") as string | null ?? "",
                     start_time: time,
                     duration: Number(duration),
                     type: "phone",
@@ -148,7 +152,7 @@ function Appointment() {
         } catch (error) {
             console.error(error);
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
     }
 
@@ -243,7 +247,7 @@ function Appointment() {
             </section>
 
             <section className="space-y-5">
-                <div className="*:not-first:mt-2 w-fit">
+                <div className="*:not-first:mt-2 max-w-64">
                     <Label htmlFor="">Select User</Label>
                     <Select onValueChange={(value) => handleSetUser(value)}>
                         <SelectTrigger id="">
@@ -329,7 +333,7 @@ function Appointment() {
                 )}
 
                 {time && (
-                    <div className="*:not-first:mt-2">
+                    <div className="*:not-first:mt-2 max-w-64">
                         <Label htmlFor="">Duration</Label>
                         <Select onValueChange={(value) => setDuration(Number(value))}>
                             <SelectTrigger id="">
@@ -346,15 +350,42 @@ function Appointment() {
                 )}
 
                 {time && duration && (
-                    <div className="*:not-first:mt-2">
-                        <Button onClick={bookAppointment} disabled={isLoading}>
-                            {isLoading ? "Booking..." : "Book Appointment"}
+                    <form className="space-y-4 max-w-64" onSubmit={bookAppointment}>
+                        <div className="*:not-first:mt-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input id="email" name="email" placeholder="Email" type="email" required />
+                        </div>
+
+                        <div className="*:not-first:mt-2">
+                            <Label htmlFor="fullname">Full Name</Label>
+                            <Input id="fullname" name="fullname" placeholder="Full Name" type="text" required />
+                        </div>
+
+                        <div className="*:not-first:mt-2">
+                            <Label htmlFor="phone">Phone Number</Label>
+                            <Input
+                                id="phone-mask"
+                                name="phone"
+                                placeholder="(123) 456-7890"
+                                type="text"
+                                required
+                                ref={(input: HTMLInputElement | null) => {
+                                    if (input) {
+                                        withMask(" (999) 999-9999", {
+                                            placeholder: "",
+                                            showMaskOnHover: false,
+                                        })(input)
+                                    }
+                                }}
+                            />
+                        </div>
+
+                        <Button type="submit" disabled={loading}>
+                            {loading ? "Booking..." : "Book Appointment"}
                         </Button>
-                    </div>
+                    </form>
                 )}
             </section>
-
-            {/* <button onClick={getAvailableSlots}>Get Available Slots</button> */}
         </main >
     )
 }
