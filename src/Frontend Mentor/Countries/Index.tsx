@@ -12,7 +12,9 @@ function Countries() {
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
 
-  const regions = [...new Set(countries.map((c) => c.region))];
+  const regions = Array.isArray(countries)
+    ? [...new Set(countries.map((c: any) => c.region))]
+    : [];
   regions.unshift("Filter by Region");
 
   const BASE_URL = "https://restcountries.com/v3.1";
